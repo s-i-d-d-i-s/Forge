@@ -11,13 +11,15 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
 import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

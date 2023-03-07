@@ -34,6 +34,7 @@ export class AuthenticationService {
         this.auth.user.subscribe(
           (response) => {
             this.user = response;
+            this.uid.next(this.user!.uid);
           }
         )
       }
@@ -41,5 +42,6 @@ export class AuthenticationService {
   }
   logout() {
     this.auth.signOut();
+    this.uid.next('');
   }
 }
