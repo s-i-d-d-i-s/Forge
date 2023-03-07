@@ -59,33 +59,93 @@
 
   <ul class="menu-inner py-1">
     <!-- Dashboard -->
-    <li class="menu-item active" *ngIf="!auth.isLoggedIn()">
-      <a routerLink="/login" class="menu-link">
+    <li class="menu-item" [class.active]="tab==1" *ngIf="!auth.isLoggedIn()">
+      <a routerLink="/login" class="menu-link" (click)="tab=1">
         <i class="menu-icon tf-icons bx bx-user"></i>
         Login
       </a>
     </li>
 
-    <li class="menu-item active" *ngIf="auth.isLoggedIn()">
-      <a routerLink="/logout" class="menu-link">
+    <li class="menu-item" [class.active]="tab==1" *ngIf="auth.isLoggedIn()">
+      <a routerLink="/logout" class="menu-link" (click)="tab=1">
         <i class="menu-icon tf-icons bx bx-user"></i>
         Logout
       </a>
     </li>
 
 
+    <li class="menu-item" [class.active]="tab==8" *ngIf="auth.isLoggedIn()">
+      <a routerLink="/dashboard" class="menu-link" (click)="tab=8">
+        <i class="menu-icon tf-icons bx bx-chart"></i>
+        Dashboard
+      </a>
+    </li>
+
     <li class="menu-header small text-uppercase" *ngIf="auth.isLoggedIn()">
-      <span class="menu-header-text">{{auth.user!.email}}</span>
+      <span class="menu-header-text">Add</span>
     </li>
 
 
-    <!-- <li class="menu-item active"  *ngIf="auth.isLoggedIn()">
-      <a href="index.html" class="menu-link">
+    <li class="menu-item" [class.active]="tab==2"  *ngIf="auth.isLoggedIn()">
+      <a routerLink="/add-expense" class="menu-link" (click)="tab=2">
+        <i class="menu-icon tf-icons bx bx-money"></i>
+        <div data-i18n="Analytics">Add Expense</div>
+      </a>
+    </li>
+
+    <li class="menu-item" [class.active]="tab==3"  *ngIf="auth.isLoggedIn()">
+      <a routerLink="/add-account" class="menu-link"  (click)="tab=3">
+        <i class="menu-icon tf-icons bx bx-money"></i>
+        <div data-i18n="Analytics">Add Account</div>
+      </a>
+    </li>
+
+    <li class="menu-item" [class.active]="tab==4"  *ngIf="auth.isLoggedIn()">
+      <a routerLink="/add-stock" class="menu-link"  (click)="tab=4">
+        <i class="menu-icon tf-icons bx bx-money"></i>
+        <div data-i18n="Analytics">Add Stock</div>
+      </a>
+    </li>
+
+    <li class="menu-item" [class.active]="tab==5"  *ngIf="auth.isLoggedIn()">
+      <a routerLink="/add-asset" class="menu-link"  (click)="tab=5">
+        <i class="menu-icon tf-icons bx bx-money"></i>
+        <div data-i18n="Analytics">Add Asset</div>
+      </a>
+    </li>
+
+    <li class="menu-header small text-uppercase" *ngIf="auth.isLoggedIn()">
+      <span class="menu-header-text">Transfer</span>
+    </li>
+
+
+    <li class="menu-item" [class.active]="tab==6"  *ngIf="auth.isLoggedIn()">
+      <a routerLink="/domestic-transfer" class="menu-link"  (click)="tab=6">
+        <i class="menu-icon tf-icons bx bx-transfer"></i>
+        <div data-i18n="Analytics">Domestic</div>
+      </a>
+    </li>
+
+    <li class="menu-item" [class.active]="tab==7"  *ngIf="auth.isLoggedIn()">
+      <a routerLink="/international-transfer" class="menu-link" (click)="tab=7">
+        <i class="menu-icon tf-icons bx bx-transfer"></i>
+        <div data-i18n="Analytics">International</div>
+      </a>
+    </li>
+
+
+    <!-- <li class="menu-header small text-uppercase" *ngIf="auth.isLoggedIn()">
+      <span class="menu-header-text">Visualize</span>
+    </li>
+
+
+    <li class="menu-item "  *ngIf="auth.isLoggedIn()">
+      <a routerLink="/domestic-transfer" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Analytics">Login()</div>
+        <div data-i18n="Analytics">Net Worth</div>
       </a>
     </li> -->
- 
+
   </ul>
 
 

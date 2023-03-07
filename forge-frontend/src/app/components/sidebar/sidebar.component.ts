@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class SidebarComponent implements OnInit {
 
+  tab=0;
   constructor(public auth:AuthenticationService) { }
 
   ngOnInit(): void {

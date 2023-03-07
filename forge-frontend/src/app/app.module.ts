@@ -12,6 +12,13 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AddExpenseComponent } from './components/add-expense/add-expense.component';
+import { AddAssetComponent } from './components/add-asset/add-asset.component';
+import { AddAccountComponent } from './components/add-account/add-account.component';
+import { DomesticTransferComponent } from './components/domestic-transfer/domestic-transfer.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { AddStockComponent } from './components/add-stock/add-stock.component';
 
 
 @NgModule({
@@ -19,7 +26,14 @@ import { LogoutComponent } from './components/logout/logout.component';
     AppComponent,
     SidebarComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    DashboardComponent,
+    AddExpenseComponent,
+    AddAssetComponent,
+    AddAccountComponent,
+    DomesticTransferComponent,
+    SettingsComponent,
+    AddStockComponent
   ],
   imports: [
     BrowserModule,
