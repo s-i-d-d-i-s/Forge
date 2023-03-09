@@ -18,8 +18,7 @@
                                 <tbody class="table-border-bottom-0">
                                     <tr *ngFor="let x of accounts; let i = index">
                                         <td *ngIf="x.currency == 'EUR' && !x.closed"><strong>{{x.name}}</strong></td>
-                                        <td *ngIf="x.currency == 'EUR' && !x.closed">€
-                                            {{formatAmount(getBalanceOfAccount(x.name))}}</td>
+                                        <td *ngIf="x.currency == 'EUR' && !x.closed">{{getViewingCurrency()=='EUR'?'€':'₹'}} {{formatAmount(getBalanceOfAccount(x.name))}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -39,8 +38,7 @@
                                 <tbody class="table-border-bottom-0">
                                     <tr *ngFor="let x of accounts; let i = index">
                                         <td *ngIf="x.currency == 'INR' && !x.closed"><strong>{{x.name}}</strong></td>
-                                        <td *ngIf="x.currency == 'INR' && !x.closed">₹
-                                            {{formatAmount(getBalanceOfAccount(x.name))}}</td>
+                                        <td *ngIf="x.currency == 'INR' && !x.closed">{{getViewingCurrency()=='EUR'?'€':'₹'}} {{formatAmount(getBalanceOfAccount(x.name))}}</td>
                                     </tr>
                                 </tbody>
                             </table>
