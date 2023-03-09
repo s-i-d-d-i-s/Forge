@@ -9,18 +9,18 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="mb-3" *ngIf="current_currencyType == 'INR'">
+                                    <div class="mb-3" *ngIf="expense.currency == 'INR'">
                                         <label for="current_account" class="form-label">Account Name</label>
                                         <select class="form-select" id="current_account" aria-label="Account Name"
-                                            [(ngModel)]="current_account" ngDefaultControl>
+                                            [(ngModel)]="expense.account" ngDefaultControl>
                                             <option *ngFor="let account of inr_accounts" [ngValue]="account.name">
                                                 {{account.name}}</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3" *ngIf="current_currencyType == 'EUR'">
+                                    <div class="mb-3" *ngIf="expense.currency == 'EUR'">
                                         <label for="current_account" class="form-label">Account Name</label>
                                         <select class="form-select" id="current_account" aria-label="Account Name"
-                                            [(ngModel)]="current_account" ngDefaultControl>
+                                            [(ngModel)]="expense.account" ngDefaultControl>
                                             <option *ngFor="let account of eur_accounts" [ngValue]="account.name">
                                                 {{account.name}}</option>
                                         </select>
@@ -29,17 +29,17 @@
                                         <label for="amount" class="form-label">Amount</label>
                                         <div class="input-group input-group-merge">
                                             <span
-                                                class="input-group-text">{{current_currencyType=='EUR'?'€':'₹'}}</span>
+                                                class="input-group-text">{{viewing_currency=='EUR'?'€':'₹'}}</span>
                                             <input type="number" id="amount" class="form-control" placeholder="0"
-                                                aria-label="Amount" [(ngModel)]="current_amount">
+                                                aria-label="Amount" [(ngModel)]="expense.amount">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="current_amountType" class="form-label">Expense Type</label>
                                         <select class="form-select" id="current_amountType" aria-label="Expense Type"
-                                            [(ngModel)]="current_amountType" ngDefaultControl>
-                                            <option *ngFor="let amountType of amountTypes" [ngValue]="amountType">
-                                                {{amountType}}</option>
+                                            [(ngModel)]="expense.amountType" ngDefaultControl>
+                                            <option *ngFor="let amount_type of amountTypes" [ngValue]="amount_type">
+                                                {{amount_type}}</option>
                                         </select>
                                     </div>
                                     <button (click)="addExpense()" class="btn btn-primary">Submit</button>
@@ -48,21 +48,21 @@
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Name</label>
                                         <input id="name" class="form-control" type="text"
-                                            placeholder="Enter expense name" [(ngModel)]="current_name">
+                                            placeholder="Enter expense name" [(ngModel)]="expense.name">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="current_date" class="form-label">Date</label>
-                                        <input class="form-control" type="date" [(ngModel)]="current_date" name="current_date" id="current_date">
+                                        <input class="form-control" type="date" [(ngModel)]="expense.timestamp" name="current_date" id="current_date">
 
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="current_currencyType" class="form-label">Expense Type</label>
                                         <select class="form-select" id="current_currencyType" aria-label="Currency Type"
-                                            [(ngModel)]="current_currencyType" ngDefaultControl>
-                                            <option *ngFor="let currencyType of currencyTypes" [ngValue]="currencyType">
-                                                {{currencyType}}</option>
+                                            [(ngModel)]="expense.currency" ngDefaultControl>
+                                            <option *ngFor="let currency_type of currencyTypes" [ngValue]="currency_type">
+                                                {{currency_type}}</option>
                                         </select>
                                     </div>
                                     
