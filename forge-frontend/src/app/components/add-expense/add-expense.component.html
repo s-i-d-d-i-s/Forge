@@ -1,1 +1,77 @@
-<p>add-expense works!</p>
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container">
+            <div class="alert alert-success" role="alert" *ngIf="show_alert">Expense was added succesfully !</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <h5 class="card-header">Add Expense</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3" *ngIf="current_currencyType == 'INR'">
+                                        <label for="current_account" class="form-label">Account Name</label>
+                                        <select class="form-select" id="current_account" aria-label="Account Name"
+                                            [(ngModel)]="current_account" ngDefaultControl>
+                                            <option *ngFor="let account of inr_accounts" [ngValue]="account.name">
+                                                {{account.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3" *ngIf="current_currencyType == 'EUR'">
+                                        <label for="current_account" class="form-label">Account Name</label>
+                                        <select class="form-select" id="current_account" aria-label="Account Name"
+                                            [(ngModel)]="current_account" ngDefaultControl>
+                                            <option *ngFor="let account of eur_accounts" [ngValue]="account.name">
+                                                {{account.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Amount</label>
+                                        <div class="input-group input-group-merge">
+                                            <span
+                                                class="input-group-text">{{current_currencyType=='EUR'?'€':'₹'}}</span>
+                                            <input type="number" id="amount" class="form-control" placeholder="0"
+                                                aria-label="Amount" [(ngModel)]="current_amount">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="current_amountType" class="form-label">Expense Type</label>
+                                        <select class="form-select" id="current_amountType" aria-label="Expense Type"
+                                            [(ngModel)]="current_amountType" ngDefaultControl>
+                                            <option *ngFor="let amountType of amountTypes" [ngValue]="amountType">
+                                                {{amountType}}</option>
+                                        </select>
+                                    </div>
+                                    <button (click)="addExpense()" class="btn btn-primary">Submit</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input id="name" class="form-control" type="text"
+                                            placeholder="Enter expense name" [(ngModel)]="current_name">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="current_date" class="form-label">Date</label>
+                                        <input class="form-control" type="date" [(ngModel)]="current_date" name="current_date" id="current_date">
+
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="current_currencyType" class="form-label">Expense Type</label>
+                                        <select class="form-select" id="current_currencyType" aria-label="Currency Type"
+                                            [(ngModel)]="current_currencyType" ngDefaultControl>
+                                            <option *ngFor="let currencyType of currencyTypes" [ngValue]="currencyType">
+                                                {{currencyType}}</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,6 +19,7 @@ import { AddAccountComponent } from './components/add-account/add-account.compon
 import { DomesticTransferComponent } from './components/domestic-transfer/domestic-transfer.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AddStockComponent } from './components/add-stock/add-stock.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { AddStockComponent } from './components/add-stock/add-stock.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
