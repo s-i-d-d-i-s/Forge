@@ -44,8 +44,8 @@ export class AccountHistoryComponent implements OnInit {
         this.selectedExpenses.sort(
           (a: Expense, b: Expense) => {
             var result = (new Date(a.timestamp)).getTime() < (new Date(b.timestamp)).getTime();
-            if (result) return -1;
-            return 1;
+            if (result) return 1;
+            return -1;
           }
         )
         for(let expense of this.selectedExpenses){
