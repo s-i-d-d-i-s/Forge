@@ -58,9 +58,9 @@ export class AccountHistoryComponent implements OnInit {
             this.expense_history.set(quarter,expense_of_this_quarter!);
         }
         for(let y of this.expense_history){
-          var expense_of_this_quarter = this.expense_history.get(y);
+          var expense_of_this_quarter = this.expense_history.get(y[0]);
           expense_of_this_quarter!.reverse();
-          this.expense_history.set(y,expense_of_this_quarter!);
+          this.expense_history.set(y[0],expense_of_this_quarter!);
         } 
       }
     )
