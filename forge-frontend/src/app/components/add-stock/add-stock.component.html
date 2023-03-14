@@ -1,1 +1,33 @@
-<p>add-stock works!</p>
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container">
+            <div class="alert alert-success" role="alert" *ngIf="show_alert">Stock was added succesfully !</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <h5 class="card-header">Add Stocks</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input id="name" class="form-control" type="text"
+                                            placeholder="Enter stock symbol" [(ngModel)]="stock.name">
+                                    </div>
+                                    <button (click)="addStock()" class="btn btn-primary">Submit</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Amount</label>
+                                        <input id="amount" class="form-control" type="text"
+                                            placeholder="Enter amount" [(ngModel)]="stock.amount">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

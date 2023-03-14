@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountHistoryComponent } from './components/account-history/account-history.component';
 import { AddAccountComponent } from './components/add-account/add-account.component';
 import { AddAssetComponent } from './components/add-asset/add-asset.component';
 import { AddExpenseComponent } from './components/add-expense/add-expense.component';
@@ -20,10 +21,10 @@ const routes: Routes = [
   {path : 'add-stock' , component : AddStockComponent},
   {path : 'domestic-transfer' , component : DomesticTransferComponent},
   {path : 'settings' , component : SettingsComponent},
+  {path : 'history/:name', component: AccountHistoryComponent},
   // {path : 'visualize' , component : VisualizeComponent},
   // {path : 'monthly-tracker', component: MonthlyTrackerComponent},
   // {path : 'net-worth-tracker', component: NetWorthTrackerComponent},
-  // {path : 'history/:name', component: AccountHistoryComponent},
   // {path : 'asset-history/:name', component: AssetHistoryComponent}
 ];
 

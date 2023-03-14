@@ -99,7 +99,7 @@ export class DatabaseService {
     )
   }
 
-  addAsset(investment: Stock){
+  addStock(investment: Stock){
     this.http.post(INVESTMENTS, investment).subscribe(
       (data) => {
         console.log("POSTED SUCCESSFULLY !");

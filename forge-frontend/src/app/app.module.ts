@@ -20,6 +20,7 @@ import { DomesticTransferComponent } from './components/domestic-transfer/domest
 import { SettingsComponent } from './components/settings/settings.component';
 import { AddStockComponent } from './components/add-stock/add-stock.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AccountHistoryComponent } from './components/account-history/account-history.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddAccountComponent,
     DomesticTransferComponent,
     SettingsComponent,
-    AddStockComponent
+    AddStockComponent,
+    AccountHistoryComponent
   ],
   imports: [
     BrowserModule,

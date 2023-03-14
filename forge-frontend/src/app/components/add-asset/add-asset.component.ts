@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-asset.component.css']
 })
 export class AddAssetComponent implements OnInit {
-
+  show_alert=false;
   constructor() { }
 
   ngOnInit(): void {
