@@ -1,0 +1,87 @@
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container">
+            <div class="alert alert-success" role="alert" *ngIf="show_alert">Transfer done succesfully !</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <h5 class="card-header">International Transfer</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="from_account" class="form-label">From Account</label>
+                                        <select class="form-select" id="from_account" aria-label="From Account"
+                                            [(ngModel)]="expense_1.account" ngDefaultControl>
+                                            <option *ngFor="let account of accounts" [ngValue]="account.name">
+                                                {{account.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Amount Sent</label>
+                                        <div class="input-group input-group-merge">
+                                            <span class="input-group-text">{{expense_1.currency =='EUR'?'€':'₹'}}</span>
+                                            <input type="number" id="amount" class="form-control" placeholder="0"
+                                                aria-label="Amount" [(ngModel)]="expense_1.amount">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="current_amountType" class="form-label">Currency</label>
+                                        <select class="form-select" id="current_amountType" aria-label="Currency"
+                                            [(ngModel)]="expense_1.currency" ngDefaultControl>
+                                            <option *ngFor="let currency_type of currency_types" [ngValue]="currency_type">
+                                                {{currency_type}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="current_amountType" class="form-label">Amount Type</label>
+                                        <select class="form-select" id="current_currencyType" aria-label="Currency Type"
+                                            [(ngModel)]="expense_1.amountType" ngDefaultControl>
+                                            <option *ngFor="let amount_type of amount_types" [ngValue]="amount_type">
+                                                {{amount_type}}</option>
+                                        </select>
+                                    </div>
+                                    <button (click)="transferAmount()" class="btn btn-primary">Submit</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="from_account" class="form-label">To Account</label>
+                                        <select class="form-select" id="to_account" aria-label="To Account"
+                                            [(ngModel)]="expense_2.account" ngDefaultControl>
+                                            <option *ngFor="let account of accounts" [ngValue]="account.name">
+                                                {{account.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Amount Received</label>
+                                        <div class="input-group input-group-merge">
+                                            <span class="input-group-text">{{expense_2.currency =='EUR'?'€':'₹'}}</span>
+                                            <input type="number" id="amount" class="form-control" placeholder="0"
+                                                aria-label="Amount" [(ngModel)]="expense_2.amount">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="current_amountType" class="form-label">Currency</label>
+                                        <select class="form-select" id="current_amountType" aria-label="Currency"
+                                            [(ngModel)]="expense_2.currency" ngDefaultControl>
+                                            <option *ngFor="let currency_type of currency_types" [ngValue]="currency_type">
+                                                {{currency_type}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="current_amountType" class="form-label">Amount Type</label>
+                                        <select class="form-select" id="current_currencyType" aria-label="Currency Type"
+                                            [(ngModel)]="expense_2.amountType" ngDefaultControl>
+                                            <option *ngFor="let amount_type of amount_types" [ngValue]="amount_type">
+                                                {{amount_type}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container">
+            <div class="alert alert-success" role="alert" *ngIf="show_alert">Transfer done succesfully !</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <h5 class="card-header">Domestic Transfer</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="from_account" class="form-label">From Account</label>
+                                        <select class="form-select" id="from_account" aria-label="From Account"
+                                            [(ngModel)]="expense_1.account" ngDefaultControl>
+                                            <option *ngFor="let account of accounts" [ngValue]="account.name">
+                                                {{account.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Amount</label>
+                                        <div class="input-group input-group-merge">
+                                            <span class="input-group-text">{{expense_1.currency =='EUR'?'€':'₹'}}</span>
+                                            <input type="number" id="amount" class="form-control" placeholder="0"
+                                                aria-label="Amount" [(ngModel)]="expense_1.amount">
+                                        </div>
+                                    </div>
+                                    <button (click)="transferAmount()" class="btn btn-primary">Submit</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="current_account" class="form-label">To Account</label>
+                                        <select class="form-select" id="to_account" aria-label="To Account"
+                                            [(ngModel)]="expense_2.account" ngDefaultControl>
+                                            <option *ngFor="let account of accounts" [ngValue]="account.name">
+                                                {{account.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="current_amountType" class="form-label">Currency Type</label>
+                                        <select class="form-select" id="current_amountType" aria-label="Expense Type"
+                                            [(ngModel)]="expense_1.currency" ngDefaultControl>
+                                            <option *ngFor="let amount_type of currency_types" [ngValue]="amount_type">
+                                                {{amount_type}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
