@@ -44,8 +44,8 @@ export class AccountHistoryComponent implements OnInit {
         this.selectedExpenses.sort(
           (a: Expense, b: Expense) => {
             var result = (new Date(a.timestamp)).getTime() < (new Date(b.timestamp)).getTime();
-            if (result) return 1;
-            return -1;
+            if (result) return -1;
+            return 1;
           }
         )
         for(let expense of this.selectedExpenses){
@@ -57,9 +57,10 @@ export class AccountHistoryComponent implements OnInit {
             expense_of_this_quarter?.push(expense);
             this.expense_history.set(quarter,expense_of_this_quarter!);
         }
-        console.log(this.expense_history);
         for(let y of this.expense_history){
-          console.log(y);
+          var expense_of_this_quarter = this.expense_history.get(y);
+          expense_of_this_quarter.reverse();
+          this.expense_history.set(y,expense_of_this_quarter!);
         } 
       }
     )
