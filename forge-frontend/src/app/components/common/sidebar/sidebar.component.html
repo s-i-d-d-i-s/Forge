@@ -1,4 +1,4 @@
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" style="overflow:auto">
   <div class="app-brand demo">
     <a routerLink="/" class="app-brand-link">
       <span class="app-brand-logo demo">
@@ -133,6 +133,24 @@
       </a>
     </li>
 
+    <li class="menu-header small text-uppercase" *ngIf="auth.isLoggedIn()">
+      <span class="menu-header-text">Analysis</span>
+    </li>
+
+
+    <li class="menu-item" [class.active]="tab==9"  *ngIf="auth.isLoggedIn()">
+      <a routerLink="/monthly-tracker" class="menu-link"  (click)="tab=9">
+        <i class="menu-icon tf-icons bx bx-calendar"></i>
+        <div data-i18n="Analytics">Tracker</div>
+      </a>
+    </li>
+
+    <li class="menu-item" [class.active]="tab==10"  *ngIf="auth.isLoggedIn()">
+      <a routerLink="/net-worth-tracker" class="menu-link"  (click)="tab=10">
+        <i class="menu-icon tf-icons bx bx-chart"></i>
+        <div data-i18n="Analytics">Net Worth</div>
+      </a>
+    </li>
 
     <!-- <li class="menu-header small text-uppercase" *ngIf="auth.isLoggedIn()">
       <span class="menu-header-text">Visualize</span>

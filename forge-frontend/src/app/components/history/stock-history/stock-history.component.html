@@ -1,1 +1,37 @@
-<p>stock-history works!</p>
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container" class="text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <div *ngFor="let y of stock_history | keyvalue" class="m-3">
+                            <h3>{{y.key}}</h3>
+                            <br>
+                            <table class="table align-middle mb-0 bg-white">
+
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>S. No</th>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let x of y.value; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{x.name}}</td>
+                                        <td>{{x.amount}}</td>
+                                        <td>{{getDate(x.timestamp)}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

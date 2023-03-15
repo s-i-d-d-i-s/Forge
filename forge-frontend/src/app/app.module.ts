@@ -25,6 +25,7 @@ import { OverviewComponent } from './components/common/overview/overview.compone
 import { StockHistoryComponent } from './components/history/stock-history/stock-history.component';
 import { InternationalTransferComponent } from './components/transfers/international-transfer/international-transfer.component';
 import { MonthlyExpenseHistoryComponent } from './components/history/monthly-expense-history/monthly-expense-history.component';
+import { NetWorthTrackerComponent } from './components/history/net-worth-tracker/net-worth-tracker.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MonthlyExpenseHistoryComponent } from './components/history/monthly-exp
     OverviewComponent,
     StockHistoryComponent,
     InternationalTransferComponent,
-    MonthlyExpenseHistoryComponent
+    MonthlyExpenseHistoryComponent,
+    NetWorthTrackerComponent
   ],
   imports: [
     BrowserModule,

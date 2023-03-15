@@ -11,6 +11,9 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { LogoutComponent } from './components/auth/logout/logout.component';
 import { SettingsComponent } from './components/common/settings/settings.component';
 import { InternationalTransferComponent } from './components/transfers/international-transfer/international-transfer.component';
+import { StockHistoryComponent } from './components/history/stock-history/stock-history.component';
+import { MonthlyExpenseHistoryComponent } from './components/history/monthly-expense-history/monthly-expense-history.component';
+import { NetWorthTrackerComponent } from './components/history/net-worth-tracker/net-worth-tracker.component';
 
 const routes: Routes = [
   {path : 'login' , component : LoginComponent},
@@ -23,11 +26,11 @@ const routes: Routes = [
   {path : 'domestic-transfer' , component : DomesticTransferComponent},
   {path : 'international-transfer' , component : InternationalTransferComponent},
   {path : 'settings' , component : SettingsComponent},
-  {path : 'history/:name', component: AccountHistoryComponent},
+  {path : 'account/:name', component: AccountHistoryComponent},
+  {path : 'stock/:name', component: StockHistoryComponent},
   // {path : 'visualize' , component : VisualizeComponent},
-  // {path : 'monthly-tracker', component: MonthlyTrackerComponent},
-  // {path : 'net-worth-tracker', component: NetWorthTrackerComponent},
-  // {path : 'asset-history/:name', component: AssetHistoryComponent}
+  {path : 'monthly-tracker', component: MonthlyExpenseHistoryComponent},
+  {path : 'net-worth-tracker', component: NetWorthTrackerComponent},
 ];
 
 
