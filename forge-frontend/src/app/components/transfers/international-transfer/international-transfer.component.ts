@@ -35,9 +35,11 @@ export class InternationalTransferComponent implements OnInit {
     ]
     this.expense_1.currency = this.currency_types[1];
     this.expense_1.amountType = this.amount_types[1];
+    this.expense_1.timestamp = new Date(Date.now());
 
     this.expense_2.currency = this.currency_types[0];
     this.expense_2.amountType = this.amount_types[0];
+    this.expense_2.timestamp = new Date(Date.now());
   }
 
   reset_expense():void {

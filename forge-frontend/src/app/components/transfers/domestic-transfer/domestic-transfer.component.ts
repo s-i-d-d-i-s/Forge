@@ -31,6 +31,8 @@ export class DomesticTransferComponent implements OnInit {
       'EUR'
     ]
     this.expense_1.currency = this.currency_types[0];
+    this.expense_1.timestamp = new Date(Date.now());
+    this.expense_2.timestamp = new Date(Date.now());
   }
 
   reset_expense():void {
