@@ -65,12 +65,22 @@
                                     </div>
                                 </div>
                                 <br>
-                                <p class="lead" style="display: flex; justify-content: center;">Financial Manager </p>
+                                <p class="lead" style="display: flex; justify-content: center;">Welcome to Forge! 👋</p>
                                 <p class="lead text-muted" style="display: flex; justify-content: center;">Private
                                     Property of Siddharth Singh</p>
-                                <div style="display: flex; justify-content: center;">
-                                    <a routerLink="/settings" class="btn btn-primary">Settings</a>
-                                </div>
+
+
+                                    <div style="display: flex; justify-content: center;">
+                                <a routerLink="/login" class="btn btn-primary" *ngIf="!auth.isLoggedIn()" >
+                                    <i class="menu-icon tf-icons bx bx-user"></i>
+                                    Login
+                                </a>
+
+                                <a routerLink="/logout" class="btn btn-primary" *ngIf="auth.isLoggedIn()">
+                                    <i class="menu-icon tf-icons bx bx-user"></i>
+                                    Logout
+                                </a>
+</div>
                             </div>
 
                         </div>

@@ -59,25 +59,20 @@
 
   <ul class="menu-inner py-1">
     <!-- Dashboard -->
-    <li class="menu-item" [class.active]="tab==1" *ngIf="!auth.isLoggedIn()">
-      <a routerLink="/login" class="menu-link" (click)="tab=1">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        Login
-      </a>
-    </li>
-
-    <li class="menu-item" [class.active]="tab==1" *ngIf="auth.isLoggedIn()">
-      <a routerLink="/logout" class="menu-link" (click)="tab=1">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        Logout
-      </a>
-    </li>
+    
 
 
     <li class="menu-item" [class.active]="tab==8" *ngIf="auth.isLoggedIn()">
       <a routerLink="/dashboard" class="menu-link" (click)="tab=8">
         <i class="menu-icon tf-icons bx bx-chart"></i>
         Dashboard
+      </a>
+    </li>
+
+    <li class="menu-item" [class.active]="tab==11" *ngIf="auth.isLoggedIn()">
+      <a routerLink="/settings" class="menu-link" (click)="tab=11">
+        <i class="menu-icon tf-icons bx bx-cog"></i>
+        Settings
       </a>
     </li>
 

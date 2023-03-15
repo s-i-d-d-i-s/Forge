@@ -1,1 +1,43 @@
-<p>settings works!</p>
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container">
+            <div class="alert alert-success" role="alert" *ngIf="show_alert">Settings updated succesfully !</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <h5 class="card-header">Settings</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="viewing_currency" class="form-label">Viewing Currency</label>
+                                        <select class="form-select" id="viewing_currency" aria-label="Account Name"
+                                            [(ngModel)]="current_viewing_currency" ngDefaultControl>
+                                            <option *ngFor="let currency of currencies" [ngValue]="currency">
+                                                {{currency}}</option>
+                                        </select>
+                                    </div>
+                                    <button (click)="update_viewing_currency()" class="btn btn-primary">Submit</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="EUR_to_INR" class="form-label">1 EUR to INR</label>
+                                        <input id="EUR_to_INR" class="form-control" type="text"
+                                            placeholder="EUR -> INR Rate" [(ngModel)]="currentSettings.EUR_to_INR">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="USD_to_EUR" class="form-label">1 USD to EUR</label>
+                                        <input id="USD_to_EUR" class="form-control" type="text"
+                                            placeholder="USD -> EUR Rate" [(ngModel)]="currentSettings.USD_to_EUR">
+                                    </div>
+                                    <button (click)="update_exchange_rate()" class="btn btn-primary">Update Rates</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
