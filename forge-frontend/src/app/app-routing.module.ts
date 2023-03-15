@@ -14,8 +14,10 @@ import { InternationalTransferComponent } from './components/transfers/internati
 import { StockHistoryComponent } from './components/history/stock-history/stock-history.component';
 import { MonthlyExpenseHistoryComponent } from './components/history/monthly-expense-history/monthly-expense-history.component';
 import { NetWorthTrackerComponent } from './components/history/net-worth-tracker/net-worth-tracker.component';
+import { OverviewComponent } from './components/common/overview/overview.component';
 
 const routes: Routes = [
+  {path : '' , component : OverviewComponent},
   {path : 'login' , component : LoginComponent},
   {path : 'logout' , component : LogoutComponent},
   {path : 'dashboard' , component : DashboardComponent},
