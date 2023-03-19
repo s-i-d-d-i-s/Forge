@@ -25,10 +25,10 @@ export class DatabaseService {
   }
 
   refreshData(userToken: string, uid: string) {
-    SETTINGS = SETTINGS.replace("<<uid>>", uid);
-    EXPENSES = EXPENSES.replace("<<uid>>", uid);
-    ACCOUNTS = ACCOUNTS.replace("<<uid>>", uid);
-    INVESTMENTS = INVESTMENTS.replace("<<uid>>", uid);
+    SETTINGS = SETTINGS.replace("<<uid>>", uid)+'?auth=' + userToken + '&uid=' + uid;
+    EXPENSES = EXPENSES.replace("<<uid>>", uid)+'?auth=' + userToken + '&uid=' + uid;;
+    ACCOUNTS = ACCOUNTS.replace("<<uid>>", uid)+'?auth=' + userToken + '&uid=' + uid;;
+    INVESTMENTS = INVESTMENTS.replace("<<uid>>", uid)+'?auth=' + userToken + '&uid=' + uid;;
     
     this.getSettings().subscribe(
       (data) => {
