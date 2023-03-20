@@ -103,4 +103,20 @@ export class MonthlyExpenseHistoryComponent implements OnInit {
   getDate(timestamp:Date){
     return (new Date(timestamp)).getDate() + ' ' + this.MONTHS[ +((new Date(timestamp)).getMonth()) ] +  ' ' + (new Date(timestamp)).getFullYear()
   }
+
+  formatAmount(amount:number){
+    var formatter = new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: this.getViewingCurrency()!,
+    });
+    
+    return formatter.format(+amount.toFixed(2)).substring(1);
+  }
+
+  getViewingCurrency() {
+    if (localStorage.getItem("View_Currency") == null) {
+      return "INR";
+    }
+    return localStorage.getItem("View_Currency");
+  }
 }

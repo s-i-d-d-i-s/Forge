@@ -73,4 +73,19 @@ export class AccountHistoryComponent implements OnInit {
   getQuater(timestamp:Date){
     return "Q" + ( Math.floor(((new Date(timestamp)).getMonth())/3) +1) +  ' ' + (new Date(timestamp)).getFullYear()
   }
+
+  formatAmount(amount:number){
+    var formatter = new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: this.getViewingCurrency()!,
+    });
+    
+    return formatter.format(+amount.toFixed(2)).substring(1);
+  }
+  getViewingCurrency() {
+    if (localStorage.getItem("View_Currency") == null) {
+      return "INR";
+    }
+    return localStorage.getItem("View_Currency");
+  }
 }

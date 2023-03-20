@@ -24,7 +24,7 @@
                                     <tr *ngFor="let x of y.value; let i = index">
                                         <td>{{i+1}}</td>
                                         <td>{{x.name}}</td>
-                                        <td>{{x.amount}}</td>
+                                        <td>{{formatAmount(x.amount)}}</td>
                                         <td>{{x.account}}</td>
                                         <td>{{x.amountType}}</td>
                                         <td>{{getDate(x.timestamp)}}</td>

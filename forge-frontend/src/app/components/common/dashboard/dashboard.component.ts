@@ -117,7 +117,12 @@ export class DashboardComponent implements OnInit {
     return result;
   }
   formatAmount(amount:number){
-    return +amount.toFixed(2);
+    var formatter = new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: this.getViewingCurrency()!,
+    });
+    
+    return formatter.format(+amount.toFixed(2)).substring(1);
   }
 
   getViewingCurrency() {
