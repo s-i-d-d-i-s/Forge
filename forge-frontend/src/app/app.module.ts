@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/common/sidebar/sidebar.component';
 
-
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
@@ -26,6 +25,7 @@ import { StockHistoryComponent } from './components/history/stock-history/stock-
 import { InternationalTransferComponent } from './components/transfers/international-transfer/international-transfer.component';
 import { MonthlyExpenseHistoryComponent } from './components/history/monthly-expense-history/monthly-expense-history.component';
 import { NetWorthTrackerComponent } from './components/history/net-worth-tracker/net-worth-tracker.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -53,6 +53,7 @@ import { NetWorthTrackerComponent } from './components/history/net-worth-tracker
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgApexchartsModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [

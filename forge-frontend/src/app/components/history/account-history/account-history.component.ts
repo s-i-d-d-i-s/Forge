@@ -82,6 +82,7 @@ export class AccountHistoryComponent implements OnInit {
     
     return formatter.format(+amount.toFixed(2)).substring(1);
   }
+  
   getViewingCurrency() {
     if (localStorage.getItem("View_Currency") == null) {
       return "INR";

@@ -1,1 +1,20 @@
-<p>net-worth-tracker works!</p>
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <h4 class="card-header text-center">Your Net Worth :   {{getViewingCurrency()=='EUR'?'€':'₹'}} {{ formatAmountCurrency(y_data[y_data.length-1] )}}</h4>
+                        <!--The content below is only a placeholder and can be replaced.-->
+                        <div id="chart" *ngIf="chartOptions != undefined">
+                            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                [xaxis]="chartOptions.xaxis" [dataLabels]="chartOptions.dataLabels"
+                                [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
+                                [title]="chartOptions.title"></apx-chart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
