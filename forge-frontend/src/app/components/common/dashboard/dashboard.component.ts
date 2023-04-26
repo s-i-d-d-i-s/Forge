@@ -117,11 +117,15 @@ export class DashboardComponent implements OnInit {
     return result;
   }
   formatAmount(amount:number){
+    var negative = amount < 0;
+    amount = Math.abs(amount);
     var formatter = new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: this.getViewingCurrency()!,
     });
-    
+    if(negative){
+      return '-' + formatter.format(+amount.toFixed(2)).substring(1);  
+    }
     return formatter.format(+amount.toFixed(2)).substring(1);
   }
 
