@@ -10,6 +10,7 @@ import { DatabaseService } from './database.service';
 export class AuthenticationService {
   user: firebase.User | null = null;
   uid= new BehaviorSubject<string>('');
+  user_token = new BehaviorSubject<string>('');
   constructor(public auth: AngularFireAuth,public db:DatabaseService) {
     this.auth.onAuthStateChanged((user) => {
       this.user = user;
@@ -17,6 +18,7 @@ export class AuthenticationService {
         (data) => {
           this.db.refreshData(data,this.user!.uid);
           this.uid.next(this.user!.uid);
+          this.user_token.next(data);
         }
       )
     })

@@ -52,9 +52,9 @@
                         </div>
                         <div class="card-body">
                             <ul class="p-0 m-0">
-                                <li class="d-flex mb-4 pb-1" *ngFor="let x of stocks; let i = index">
+                                <li class="d-flex mb-4 pb-1" *ngFor="let x of stock_overview; let i = index">
                                     <div class="avatar flex-shrink-0 me-3">
-                                        <a routerLink="/stock/{{x.name}}">
+                                        <a routerLink="/stock/{{x['name']}}">
                                         <img src="assets/assets/img/icons/brands/google.png" alt="User"
                                             class="rounded" />
                                         </a>
@@ -62,13 +62,13 @@
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                         <div class="me-2">
-                                            <h6 class="mb-0">{{x.name}}</h6>
-                                            <small class="text-muted d-block mb-1">{{formatAmount(x.amount)}}
+                                            <h6 class="mb-0">{{x['name']}}</h6>
+                                            <small class="text-muted d-block mb-1">{{formatAmount(x['amount'])}}
                                                 Units</small>
                                         </div>
                                         <div class="user-progress d-flex align-items-center gap-1">
                                             <span class="text-muted">{{getViewingCurrency()=='EUR'?'€':'₹'}} {{
-                                                formatAmount(x.price! * x.amount)}}</span>
+                                                formatAmount(x['price'] * x['amount'])}}</span>
                                         </div>
                                     </div>
                                 </li>

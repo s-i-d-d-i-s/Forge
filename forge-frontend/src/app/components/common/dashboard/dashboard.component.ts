@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
   assets: Asset[];
   currentSettings: Settings;
   
+  stock_overview: {[symbol:string]: any}[] = [];
+
   constructor(public db:DatabaseService) {
     this.accounts = [];
     this.expenses = [];
@@ -70,6 +72,11 @@ export class DashboardComponent implements OnInit {
         }
       )
     },4000);
+    this.db.stock_overview.subscribe(
+      (data) => {
+        this.stock_overview = data;
+      }
+    )
   }
 
 
@@ -105,8 +112,8 @@ export class DashboardComponent implements OnInit {
   }
   getTotalMoneyInInvestments(){
     var currentBalance = 0;
-    for(let i=0;i<this.stocks.length;i++){
-      currentBalance += this.stocks[i].amount * this.stocks[i].price!;
+    for(let i=0;i<this.stock_overview.length;i++){
+      currentBalance += this.stock_overview[i]['amount'] * this.stock_overview[i]['price'];
     }
     return currentBalance;
   }

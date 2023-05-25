@@ -13,6 +13,7 @@ import {
   ApexGrid
 } from "ng-apexcharts";
 import { Stock } from 'src/app/models/Stock.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -37,12 +38,19 @@ export class NetWorthTrackerComponent implements OnInit {
     "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
   ];
 
-
+  uid = '';
+  user_token = '';
   public chartOptions: ChartOptions | undefined;
 
-  constructor(public db: DatabaseService) {
+  constructor(public db: DatabaseService, public auth:AuthenticationService) {
     this.chartOptions = undefined;
-  //  this.initialize_graph(["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep"],[10, 41, 35, 51, 49, 62, 69, 91, 148]);
+
+    this.auth.uid.subscribe(
+      (_uid) =>{ this.uid = _uid;}
+    );
+    this.auth.user_token.subscribe(
+      (_user_token) =>{ this.user_token = _user_token;}
+    );
   }
 
   initialize_graph(x_data: any, y_data: any) {
@@ -87,17 +95,10 @@ export class NetWorthTrackerComponent implements OnInit {
   ngOnInit(): void {
     this.db.totalExpenses.subscribe(
       (expenses) => {
-        this.db.investments.subscribe(
+        this.db.get_stock_list(this.uid,this.user_token, this.db.get_viewing_currency()!).subscribe(
           (stocks) => {
             expenses.sort(
               (a: Expense, b: Expense) => {
-                var result = (new Date(a.timestamp)).getTime() < (new Date(b.timestamp)).getTime();
-                if (result) return -1;
-                return 1;
-              }
-            )
-            stocks.sort(
-              (a: Stock, b: Stock) => {
                 var result = (new Date(a.timestamp)).getTime() < (new Date(b.timestamp)).getTime();
                 if (result) return -1;
                 return 1;
@@ -113,7 +114,6 @@ export class NetWorthTrackerComponent implements OnInit {
 
             for(let stock of stocks){
               var date =  stock.timestamp;
-              console.log(stock);
               data.push([stock.amount*stock.price!,date]);
             }
 

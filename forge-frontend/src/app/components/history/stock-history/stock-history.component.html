@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card mb-4">
-                        <div *ngFor="let y of stock_history | keyvalue" class="m-3">
+                        <div *ngFor="let y of selected_stocks | keyvalue" class="m-3">
                             <h3>{{y.key}}</h3>
                             <br>
                             <table class="table align-middle mb-0 bg-white">
@@ -23,7 +23,7 @@
                                         <td>{{i+1}}</td>
                                         <td>{{x.name}}</td>
                                         <td>{{x.amount}}</td>
-                                        <td>{{getDate(x.timestamp)}}</td>
+                                        <td>{{x.timestamp}}</td>
                                     </tr>
                                 </tbody>
                             </table>

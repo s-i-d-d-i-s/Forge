@@ -18,7 +18,7 @@ export class SettingsComponent implements OnInit {
       'INR',
       'EUR'
     ];
-    this.current_viewing_currency = this.db.getViewingCurrency()!;
+    this.current_viewing_currency = this.db.get_viewing_currency()!;
   }
 
   ngOnInit(): void {
@@ -40,6 +40,6 @@ export class SettingsComponent implements OnInit {
   }
 
   update_viewing_currency(){
-      this.db.setViewingCurrency(this.current_viewing_currency);
+      this.db.set_viewing_currency(this.current_viewing_currency);
   }
 }
