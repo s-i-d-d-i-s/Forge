@@ -14,7 +14,7 @@ var ACCOUNTS = DATABASE_BASE + 'users/<<uid>>/accounts.json';
 var SETTINGS = DATABASE_BASE + 'users/<<uid>>/settings.json';
 var INVESTMENTS = DATABASE_BASE + 'users/<<uid>>/investment.json';
 
-const BACKEND_URL = 'http://localhost:5000/';
+const BACKEND_URL = 'https://forge-wjr4nnbhza-uc.a.run.app/';
 
 
 @Injectable({
