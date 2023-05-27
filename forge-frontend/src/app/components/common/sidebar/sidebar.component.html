@@ -146,6 +146,11 @@
         <div data-i18n="Analytics">Net Worth</div>
       </a>
     </li>
+    
+
+    <li class="menu-item text-center" [class.active]="tab==10"  *ngIf="auth.isLoggedIn()">
+      <button class="btn btn-primary" (click)="undo_add_expense()"> Undo</button>
+    </li>
 
     <!-- <li class="menu-header small text-uppercase" *ngIf="auth.isLoggedIn()">
       <span class="menu-header-text">Visualize</span>

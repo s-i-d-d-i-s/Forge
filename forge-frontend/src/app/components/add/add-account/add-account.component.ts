@@ -12,8 +12,13 @@ export class AddAccountComponent implements OnInit {
   account = <Account>{};
   constructor(private db: DatabaseService) { }
 
+  currency_types = [
+    'INR',
+    'EUR'
+  ]
   ngOnInit(): void {
     this.account.closed=false;
+    this.account.currency = this.currency_types[0];
   }
 
   addAccount() {

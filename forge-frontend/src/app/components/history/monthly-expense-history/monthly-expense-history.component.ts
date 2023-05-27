@@ -23,7 +23,6 @@ export class MonthlyExpenseHistoryComponent implements OnInit {
   info_spent = 0;
   info_left = 0;
 
-  settings: Settings = new Settings();
   monthly_cap = 0;
 
   constructor(private db: DatabaseService) {
@@ -39,11 +38,6 @@ export class MonthlyExpenseHistoryComponent implements OnInit {
         this.current_month = this.MONTHS[(new Date(Date.now())).getMonth()];
         this.current_year = ""+(new Date(Date.now())).getFullYear();
         this.showReport();
-      }
-    )
-    this.db.settings.subscribe(
-      (data) =>{
-        this.monthly_cap = data.monthly_cap;
       }
     )
   }

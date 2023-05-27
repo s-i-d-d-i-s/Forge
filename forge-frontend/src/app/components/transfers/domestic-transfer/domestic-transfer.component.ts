@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/models/Account.model';
 import { Expense } from 'src/app/models/Expense.model';
 import { Settings } from 'src/app/models/Settings.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
@@ -15,15 +16,15 @@ export class DomesticTransferComponent implements OnInit {
   expense_2 = <Expense>{};
 
 
-  show_alert=false;
-  
+  show_alert = false;
+
   accounts: Account[];
-  
+
   currency_types: string[];
 
   settings: Settings = new Settings();
 
-  constructor(private db: DatabaseService) {
+  constructor(private db: DatabaseService, public auth: AuthenticationService) {
     this.accounts = [];
 
     this.currency_types = [
@@ -35,7 +36,7 @@ export class DomesticTransferComponent implements OnInit {
     this.expense_2.timestamp = new Date(Date.now());
   }
 
-  reset_expense():void {
+  reset_expense(): void {
     this.expense_1.account = "";
     this.expense_1.amount = 0;
     this.expense_1.amountType = '';
@@ -59,23 +60,27 @@ export class DomesticTransferComponent implements OnInit {
   }
 
   transferAmount() {
-    this.expense_1.name = 'Transferring: ' + this.expense_1.account + " -> " + this.expense_2.account + ' - 1';
-    this.expense_1.amountType = "Debit";
+    this.auth.user?.getIdToken().then(
+      (data) => {
+        this.expense_1.name = 'Transferring: ' + this.expense_1.account + " -> " + this.expense_2.account + ' - 1';
+        this.expense_1.amountType = "Debit";
 
-    this.expense_2.name = 'Transferring: ' + this.expense_1.account + " -> " + this.expense_2.account + ' - 2';
-    this.expense_2.amountType = "Credit";
-    
-    this.expense_2.amount = this.expense_1.amount;
-    this.expense_2.currency = this.expense_1.currency;
+        this.expense_2.name = 'Transferring: ' + this.expense_1.account + " -> " + this.expense_2.account + ' - 2';
+        this.expense_2.amountType = "Credit";
 
-    this.db.addExpense(this.expense_1);
-    this.db.addExpense(this.expense_2);
+        this.expense_2.amount = this.expense_1.amount;
+        this.expense_2.currency = this.expense_1.currency;
 
-    this.show_alert=true;
-    setTimeout(()=>{
-      this.show_alert=false;
-      this.reset_expense();
-    },2000);
+
+        this.db.addExpense(this.expense_1, this.auth.user!.uid, data);
+        this.db.addExpense(this.expense_2, this.auth.user!.uid, data);
+
+        this.show_alert = true;
+        setTimeout(() => {
+          this.show_alert = false;
+          this.reset_expense();
+        }, 2000);
+      });
   }
 
 }

@@ -18,9 +18,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="name" class="form-label">Name</label>
-                                        <input id="name" class="form-control" type="text"
-                                            placeholder="Enter currency symbol" [(ngModel)]="account.currency">
+                                        <label for="account_currency" class="form-label">Currency</label>
+                                        <select class="form-select" id="account_currency" aria-label="Account Currency"
+                                            [(ngModel)]="account.currency" ngDefaultControl>
+                                            <option *ngFor="let currency of currency_types" [ngValue]="currency">
+                                                {{currency}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

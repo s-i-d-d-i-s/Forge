@@ -16,9 +16,9 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    <tr *ngFor="let x of accounts; let i = index">
-                                        <td *ngIf="x.currency == 'EUR' && !x.closed"><a routerLink="/account/{{x.name}}"><strong>{{x.name}}</strong></a></td>
-                                        <td *ngIf="x.currency == 'EUR' && !x.closed">{{getViewingCurrency()=='EUR'?'€':'₹'}} {{formatAmount(getBalanceOfAccount(x.name))}}</td>
+                                    <tr *ngFor="let x of account_overview; let i = index">
+                                        <td *ngIf="x.currency == 'EUR'"><a routerLink="/account/{{x.name}}"><strong>{{x.name}}</strong></a></td>
+                                        <td *ngIf="x.currency == 'EUR'">{{get_viewing_currency()=='EUR'?'€':'₹'}} {{format_amount(x.amount)}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -36,9 +36,9 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    <tr *ngFor="let x of accounts; let i = index">
-                                        <td *ngIf="x.currency == 'INR' && !x.closed"><a routerLink="/account/{{x.name}}"><strong>{{x.name}}</strong></a></td>
-                                        <td *ngIf="x.currency == 'INR' && !x.closed">{{getViewingCurrency()=='EUR'?'€':'₹'}} {{formatAmount(getBalanceOfAccount(x.name))}}</td>
+                                    <tr *ngFor="let x of account_overview; let i = index">
+                                        <td *ngIf="x.currency == 'INR'"><a routerLink="/account/{{x.name}}"><strong>{{x.name}}</strong></a></td>
+                                        <td *ngIf="x.currency == 'INR'">{{get_viewing_currency()=='EUR'?'€':'₹'}} {{format_amount(x.amount)}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -63,12 +63,12 @@
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                         <div class="me-2">
                                             <h6 class="mb-0">{{x['name']}}</h6>
-                                            <small class="text-muted d-block mb-1">{{formatAmount(x['amount'])}}
+                                            <small class="text-muted d-block mb-1">{{format_amount(x['amount'])}}
                                                 Units</small>
                                         </div>
                                         <div class="user-progress d-flex align-items-center gap-1">
-                                            <span class="text-muted">{{getViewingCurrency()=='EUR'?'€':'₹'}} {{
-                                                formatAmount(x['price'] * x['amount'])}}</span>
+                                            <span class="text-muted">{{get_viewing_currency()=='EUR'?'€':'₹'}} {{
+                                                format_amount(x['price'] * x['amount'])}}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -108,8 +108,8 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Bank</span>
-                            <h3 class="card-title mb-2">{{getViewingCurrency()=='EUR'?'€':'₹'}}
-                                {{formatAmount(getTotalMoneyInBanks())}}</h3>
+                            <h3 class="card-title mb-2">{{get_viewing_currency()=='EUR'?'€':'₹'}}
+                                {{format_amount(get_total_money_in_banks())}}</h3>
                         </div>
                     </div>
                     <br>
@@ -122,8 +122,8 @@
                                 </div>
                             </div>
                             <span>Stocks</span>
-                            <h3 class="card-title text-nowrap mb-1">{{getViewingCurrency()=='EUR'?'€':'₹'}}
-                                {{formatAmount(getTotalMoneyInInvestments())}}</h3>
+                            <h3 class="card-title text-nowrap mb-1">{{get_viewing_currency()=='EUR'?'€':'₹'}}
+                                {{format_amount(get_total_money_in_investments())}}</h3>
                         </div>
                     </div>
                     <br>
@@ -137,7 +137,7 @@
                                         <span class="badge bg-label-warning rounded-pill">Current</span>
                                     </div>
                                     <div class="mt-sm-auto">
-                                        <h3 class="mb-0">{{getViewingCurrency()=='EUR'?'€':'₹'}} {{formatAmount(getTotalNetWorth())}} </h3>
+                                        <h3 class="mb-0">{{get_viewing_currency()=='EUR'?'€':'₹'}} {{format_amount(get_total_net_worth())}} </h3>
                                     </div>
                                 </div>
                             </div>

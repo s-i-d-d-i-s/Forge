@@ -7,6 +7,7 @@ import { Stock } from '../models/Stock.model';
 import { Settings } from '../models/Settings.model';
 import { StockOverview } from '../models/StockOverview';
 import { AuthenticationService } from './authentication.service';
+import { AccountOverview } from '../models/AccountOverview';
 
 const DATABASE_BASE = 'https://deoxys-prod-default-rtdb.firebaseio.com/'
 var EXPENSES = DATABASE_BASE + 'users/<<uid>>/expenses.json';
@@ -21,13 +22,14 @@ const BACKEND_URL = 'https://forge-wjr4nnbhza-uc.a.run.app/';
   providedIn: 'root'
 })
 export class DatabaseService {
-  totalExpenses: BehaviorSubject<Expense[]> = new BehaviorSubject<Expense[]>([]);
+
   accounts: BehaviorSubject<Account[]> = new BehaviorSubject<Account[]>([]);
-  investments: BehaviorSubject<Stock[]> = new BehaviorSubject<Stock[]>([]);
   settings: BehaviorSubject<Settings> = new BehaviorSubject<Settings>(new Settings());
-
+  totalExpenses: BehaviorSubject<Expense[]> = new BehaviorSubject<Expense[]>([]);
+  stocks: BehaviorSubject<Stock[]> = new BehaviorSubject<Stock[]>([]);
   stock_overview: BehaviorSubject<StockOverview[]> = new BehaviorSubject<StockOverview[]>([]);
-
+  account_overview: BehaviorSubject<AccountOverview[]> = new BehaviorSubject<AccountOverview[]>([]);
+  net_worth_history: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   constructor(private http: HttpClient) {
 
   }
@@ -39,19 +41,11 @@ export class DatabaseService {
     INVESTMENTS = INVESTMENTS.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;;
 
     this.get_stock_overview(uid, userToken, this.get_viewing_currency()!);
-
-
-    this.getSettings().subscribe(
-      (data) => {
-        console.log(data);
-        if (data != null) {
-          this.settings.next(data);
-          this.getAllExpense();
-
-        }
-        this.getAllAccounts();
-      }
-    )
+    this.get_accounts_overview(uid, userToken, this.get_viewing_currency()!);
+    this.get_all_accounts(uid, userToken);
+    this.get_all_expenses(uid, userToken, this.get_viewing_currency()!);
+    this.get_net_worth_history(uid, userToken, this.get_viewing_currency()!);
+    this.get_settings(uid, userToken);
   }
 
 
@@ -59,78 +53,26 @@ export class DatabaseService {
 
 
 
-  addExpense(expense: Expense): void {
+  addExpense(expense: Expense, uid:string, user_token:string): void {
     this.http.post(EXPENSES, expense).subscribe(
       (data) => {
         console.log("POSTED SUCCESSFULLY !");
-        this.getAllExpense();
+        this.get_all_expenses(uid,user_token,this.get_viewing_currency()!);
+        this.get_accounts_overview(uid,user_token,this.get_viewing_currency()!);
       }
     )
   }
-  getAllExpense(): void {
-    var viewingCurrency = this.get_viewing_currency();
-    this.http.get<{ [index: string]: Expense }>(EXPENSES).subscribe(
-      (data) => {
-        var fetchedExpenses: Expense[] = [];
-        for (let key in data) {
-          if (viewingCurrency == "INR" && data[key].currency == "EUR") {
-            this.settings.subscribe(
-              (resp) => {
-                var forex = resp.EUR_to_INR;
-                data[key].amount *= forex;
-                data[key].amount = Math.round(data[key].amount * 100) / 100
-                fetchedExpenses.push(data[key]);
-              }
-            )
-          } else if (viewingCurrency == "EUR" && (data[key].currency == undefined || data[key].currency == null || data[key].currency == "INR")) {
-            this.settings.subscribe(
-              (resp) => {
-                var forex = resp.EUR_to_INR;
-                data[key].amount /= forex;
-                data[key].amount = Math.round(data[key].amount * 100) / 100
-                fetchedExpenses.push(data[key]);
-              }
-            )
-          } else {
-            fetchedExpenses.push(data[key]);
-          }
-        }
-        this.totalExpenses.next(fetchedExpenses);
-      }
-    )
-  }
-
 
   addAccount(account: Account): void {
     this.http.post(ACCOUNTS, account).subscribe(
       (data) => {
         console.log("POSTED SUCCESSFULLY !");
-        this.getAllAccounts();
+        // TODO : this.getAllAccounts();
       }
     )
   }
 
-  addStock(investment: Stock) {
-    this.http.post(INVESTMENTS, investment).subscribe(
-      (data) => {
-        console.log("POSTED SUCCESSFULLY !");
-        this.getAllAccounts();
-      }
-    )
-  }
-
-  getAllAccounts(): void {
-    this.http.get<{ [index: string]: Account }>(ACCOUNTS).subscribe(
-      (data) => {
-        var fetchedAccounts: Account[] = [];
-        for (let key in data) {
-          fetchedAccounts.push(data[key]);
-        }
-        this.accounts.next(fetchedAccounts);
-      }
-    )
-  }
-
+  // Stock APIs
 
   get_stock_overview(uid: string, user_token: string, viewingCurrency: string) {
     var url = BACKEND_URL + 'get-stock-overview/' + uid + '/' + user_token + '/' + viewingCurrency;
@@ -148,9 +90,72 @@ export class DatabaseService {
 
   get_stock_list(uid: string, user_token: string, viewingCurrency: string) {
     var url = BACKEND_URL + 'get-stock-list/' + uid + '/' + user_token + '/' + viewingCurrency;
-    return this.http.get<Stock[]>(url);
+    this.http.get<Stock[]>(url).subscribe(
+      (data) => {
+        this.stocks.next(data);
+      }
+    );
   }
 
+  addStock(investment: Stock) {
+    this.http.post(INVESTMENTS, investment).subscribe(
+      (data) => {
+        console.log("POSTED SUCCESSFULLY !");
+      }
+    )
+  }
+
+
+
+  get_net_worth_history(uid: string, user_token: string, viewingCurrency: string) {
+    var url = BACKEND_URL + 'get-net-worth-history/' + uid + '/' + user_token + '/' + viewingCurrency;
+    this.http.get<any[]>(url).subscribe(
+      (data) => {
+        console.log(data);
+        this.net_worth_history.next(data);
+      }
+    )
+  }
+
+
+  get_accounts_overview(uid: string, user_token: string, viewingCurrency: string) {
+    var url = BACKEND_URL + 'get-accounts-overview/' + uid + '/' + user_token + '/' + viewingCurrency;
+    this.http.get<AccountOverview[]>(url).subscribe(
+      (response) => {
+        this.account_overview.next(response);
+      }
+    )
+  }
+
+  get_all_accounts(uid: string, user_token: string): void {
+    var url = BACKEND_URL + 'get-accounts/' + uid + '/' + user_token;
+    this.http.get<Account[]>(url).subscribe(
+      (data) => {
+        this.accounts.next(data);
+      }
+    )
+  }
+
+
+  get_all_expenses(uid: string, user_token: string, viewingCurrency: string) {
+    var url = BACKEND_URL + 'get-expenses/' + uid + '/' + user_token + '/' + viewingCurrency;
+    this.http.get<Expense[]>(url).subscribe(
+      (response) => {
+        this.totalExpenses.next(response);
+      }
+    )
+  }
+
+  undo_add_expense(uid: string, user_token: string){
+    var url = BACKEND_URL + 'undo-expense/' + uid + '/' + user_token;
+    this.http.get<string>(url).subscribe(
+      (response) => {
+        alert(response);
+        this.get_all_expenses(uid,user_token,this.get_viewing_currency()!);
+        this.get_accounts_overview(uid,user_token,this.get_viewing_currency()!);
+      }
+    )
+  }
   set_viewing_currency(currency: string) {
     localStorage.setItem("View_Currency", currency);
   }
@@ -183,8 +188,13 @@ export class DatabaseService {
     )
   }
 
-  getSettings() {
-    return this.http.get<Settings>(SETTINGS);
+  get_settings(uid: string, user_token: string) {
+    var url = BACKEND_URL + 'get-settings/' + uid + '/' + user_token;
+    this.http.get<Settings>(url).subscribe(
+      (data) => {
+        this.settings.next(data);
+      }
+    )
   }
 
 }

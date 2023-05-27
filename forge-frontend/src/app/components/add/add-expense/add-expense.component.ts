@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/models/Account.model';
 import { Expense } from 'src/app/models/Expense.model';
 import { Settings } from 'src/app/models/Settings.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class AddExpenseComponent implements OnInit {
   amountTypes: string[];
   currencyTypes: string[];
 
-  constructor(private db: DatabaseService) {
+  constructor(private db: DatabaseService,public auth:AuthenticationService) {
     this.eur_accounts = [];
     this.inr_accounts = [];
     
@@ -61,13 +62,18 @@ export class AddExpenseComponent implements OnInit {
   }
 
   addExpense() {
-    this.db.addExpense(this.expense);
-    this.show_alert = true;
-    setTimeout(() => {
-      this.show_alert = false;
-    }, 2000);
-    this.expense.amount = 0;
-    this.expense.name = '';
+    this.auth.user?.getIdToken().then(
+      (data) => {
+        this.db.addExpense(this.expense,this.auth.user!.uid,data);
+        this.show_alert = true;
+        setTimeout(() => {
+          this.show_alert = false;
+        }, 2000);
+        this.expense.amount = 0;
+        this.expense.name = '';
+      }
+    )
+    
   }
 
   getViewingCurrency() {
