@@ -15,7 +15,9 @@ export class LoginComponent implements OnInit {
     this.auth.uid.subscribe(
       (data) => {
         if (data.length != 0) {
-          this.router.navigate(["/dashboard"]);
+          this.router.navigate(["/dashboard"]).then(() =>{
+            location.reload();
+          });
         }
       }
     )
