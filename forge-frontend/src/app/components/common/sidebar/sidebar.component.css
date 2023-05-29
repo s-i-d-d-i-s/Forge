@@ -1,0 +1,49 @@
+.show {
+    display: none;
+  }
+
+  .toggle-button-out{
+    position: absolute;
+    background-color: white;
+    border: 0px;
+    width: 2em;
+    left: 1em;
+    top: 1em;
+    z-index: 1;
+  }
+
+  .menubt{
+    position: relative;
+    width: 100%;
+  }
+
+
+
+ .leftarrow{
+  width: 100%;
+ }
+
+
+
+  .toggle-button-in{
+    position: absolute;
+    z-index: 1;
+    top: 0.5em;
+    right: 1em;
+    width: 2em;
+    border: 0px;
+    background-color: white;
+    transition: transform .2s;
+  }
+
+  #layout-menu{
+    position: absolute;
+    display: block;
+    z-index: 1;
+    line-height: 100%;
+  }
+
+  .menu-vertical{
+    position: absolute;
+    top: 0;
+  }
