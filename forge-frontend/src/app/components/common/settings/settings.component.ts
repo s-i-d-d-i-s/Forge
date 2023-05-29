@@ -40,6 +40,10 @@ export class SettingsComponent implements OnInit {
   }
 
   update_viewing_currency(){
-      this.db.set_viewing_currency(this.current_viewing_currency);
+      this.db.set_viewing_currency(this.current_viewing_currency)
+      alert("Submitted Successfully")
+      this.router.navigate(["/dashboard"]).then(() => {
+        location.reload();
+      })
   }
 }
