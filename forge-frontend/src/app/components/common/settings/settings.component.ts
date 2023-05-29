@@ -12,7 +12,7 @@ export class SettingsComponent implements OnInit {
   currentSettings: Settings;
   current_viewing_currency: string;
   currencies: string[];
-  constructor(private db:DatabaseService) {
+  constructor(private db:DatabaseService,public router: Router) {
     this.currentSettings = new Settings();
     this.currencies = [
       'INR',
@@ -41,7 +41,7 @@ export class SettingsComponent implements OnInit {
 
   update_viewing_currency(){
       this.db.set_viewing_currency(this.current_viewing_currency)
-      alert("Submitted Successfully")
+      alert("Changed Successfully")
       this.router.navigate(["/dashboard"]).then(() => {
         location.reload();
       })
