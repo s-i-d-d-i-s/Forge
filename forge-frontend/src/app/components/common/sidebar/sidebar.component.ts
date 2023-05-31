@@ -13,8 +13,8 @@ export class SidebarComponent implements OnInit {
   constructor(public auth:AuthenticationService,public db:DatabaseService) { }
 
   ngOnInit(): void {
-    this.checkScreenWidth();
-    window.addEventListener('resize', this.checkScreenWidth.bind(this));
+    this.check_screen_width();
+    window.addEventListener('resize', this.check_screen_width.bind(this));
   }
 
   undo_add_expense(){
@@ -25,18 +25,18 @@ export class SidebarComponent implements OnInit {
     )
   }
 
-  ok=document.querySelector('.toggle-button');
-  sidebar=document.querySelector('.menu');
-
-  isMobile = false;
-  isSidebarVisible = false;
+  is_mobile = false;
+  is_sidebar_visible = false;
 
   toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
+    this.is_sidebar_visible = !this.is_sidebar_visible;
   }
   
-  checkScreenWidth() {
-    this.isMobile = window.innerWidth <= 768;
+  check_screen_width() {
+    this.is_mobile = window.innerWidth <= 768;
+    if(!this.is_mobile){
+      this.is_sidebar_visible = true;
+    }
   }
 
 }

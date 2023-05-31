@@ -1,9 +1,9 @@
-<button class="toggle-button-out" (click)="toggleSidebar()"><img class="menubt" src="\assets\assets\img\icons\others\menu.png" alt=""></button>
+<button class="toggle-button-out" (click)="toggleSidebar()"><img class="menubt" src="assets\assets\img\icons\others\menu.png" alt=""></button>
 
-<div [ngClass]="{'sidebar': isMobile, 'show': isSidebarVisible}">
+<div [ngClass]="{'sidebar': is_mobile, 'hide': !is_sidebar_visible}">
 
   <aside id="layout-menu" class="menu-vertical menu bg-menu-theme" style="overflow:auto">
-    <button class="toggle-button-in" *ngIf="isMobile" (click)="toggleSidebar()"><img class="leftarrow" src="\assets\assets\img\icons\others\arrow.png" alt=""></button>
+    <button class="toggle-button-in" *ngIf="is_mobile" (click)="toggleSidebar()"><img class="leftarrow" src="\assets\assets\img\icons\others\arrow.png" alt=""></button>
     <div class="app-brand demo">
       <a routerLink="/" class="app-brand-link">
         <span class="app-brand-logo demo">
@@ -151,9 +151,15 @@
         </a>
       </li>
       
+      <li class="menu-header small text-uppercase" *ngIf="auth.isLoggedIn()">
+        <span class="menu-header-text">Actions</span>
+      </li>
 
-      <li class="menu-item text-center" [class.active]="tab==10"  *ngIf="auth.isLoggedIn()">
-        <button class="btn btn-primary" (click)="undo_add_expense()"> Undo</button>
+      <li class="menu-item text-center" *ngIf="auth.isLoggedIn()">
+        <a class="menu-link"  (click)="undo_add_expense()">
+          <i class="menu-icon tf-icons bx bx-undo"></i>
+          <div data-i18n="Analytics">Undo</div>
+        </a>
       </li>
 
       <!-- <li class="menu-header small text-uppercase" *ngIf="auth.isLoggedIn()">
