@@ -32,12 +32,9 @@ export class SidebarComponent implements OnInit {
     this.is_sidebar_visible = !this.is_sidebar_visible;
   }
   
-  check_screen_width() {
-    this.is_mobile = window.innerWidth <= 768;
-    if(!this.is_mobile){
-      this.is_sidebar_visible = true;
-      if(this.isMobile) this.isSidebarVisible=true;
-    }
+  checkScreenWidth() {
+    this.isMobile = window.innerWidth <= 768;
+    if(this.isMobile) this.isSidebarVisible=true;
   }
 
 }
