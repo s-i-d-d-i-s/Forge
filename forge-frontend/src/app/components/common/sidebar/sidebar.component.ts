@@ -36,6 +36,7 @@ export class SidebarComponent implements OnInit {
     this.is_mobile = window.innerWidth <= 768;
     if(!this.is_mobile){
       this.is_sidebar_visible = true;
+      if(this.isMobile) this.isSidebarVisible=true;
     }
   }
 
