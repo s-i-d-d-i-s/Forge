@@ -16,6 +16,8 @@ export class AuthenticationService {
       this.user = user;
       this.user?.getIdToken().then(
         (data) => {
+          console.log(user);
+          this.db.initialize_user(this.user!.uid,data);
           this.db.refreshData(data,this.user!.uid);
           this.uid.next(this.user!.uid);
           this.user_token.next(data);
@@ -24,6 +26,7 @@ export class AuthenticationService {
     })
     
   }
+  
   isLoggedIn() {
     return this.user != null;
   }

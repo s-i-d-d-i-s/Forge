@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Settings } from 'src/app/models/Settings.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
@@ -10,11 +11,20 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class SidebarComponent implements OnInit {
 
   tab=0;
+  settings: Settings|null = null;
   constructor(public auth:AuthenticationService,public db:DatabaseService) { }
 
   ngOnInit(): void {
     this.check_screen_width();
     window.addEventListener('resize', this.check_screen_width.bind(this));
+    this.db.settings.subscribe(
+      (response) => {
+        this.settings = response;
+      }
+    )
+  }
+  disable_sidebar(){
+    return this.auth.user != null && this.settings?.onboarded == false
   }
 
   undo_add_expense(){

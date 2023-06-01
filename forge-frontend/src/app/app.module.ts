@@ -26,6 +26,8 @@ import { InternationalTransferComponent } from './components/transfers/internati
 import { MonthlyExpenseHistoryComponent } from './components/history/monthly-expense-history/monthly-expense-history.component';
 import { NetWorthTrackerComponent } from './components/history/net-worth-tracker/net-worth-tracker.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { AuthGuard } from './services/auth.guard';
+import { OnboardingComponent } from './components/auth/onboarding/onboarding.component';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     StockHistoryComponent,
     InternationalTransferComponent,
     MonthlyExpenseHistoryComponent,
-    NetWorthTrackerComponent
+    NetWorthTrackerComponent,
+    OnboardingComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
   ],
   providers: [
     { provide: PERSISTENCE, useValue: 'session' },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

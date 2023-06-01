@@ -8,6 +8,7 @@ import { Settings } from '../models/Settings.model';
 import { StockOverview } from '../models/StockOverview';
 import { AuthenticationService } from './authentication.service';
 import { AccountOverview } from '../models/AccountOverview';
+import { Router } from '@angular/router';
 
 const DATABASE_BASE = 'https://deoxys-prod-default-rtdb.firebaseio.com/'
 var EXPENSES = DATABASE_BASE + 'users/<<uid>>/expenses.json';
@@ -15,8 +16,8 @@ var ACCOUNTS = DATABASE_BASE + 'users/<<uid>>/accounts.json';
 var SETTINGS = DATABASE_BASE + 'users/<<uid>>/settings.json';
 var INVESTMENTS = DATABASE_BASE + 'users/<<uid>>/investment.json';
 
-const BACKEND_URL = 'https://forge-wjr4nnbhza-uc.a.run.app/';
-
+//export const BACKEND_URL = 'https://forge-wjr4nnbhza-uc.a.run.app/';
+export const BACKEND_URL = 'http://localhost:5000/';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class DatabaseService {
   stock_overview: BehaviorSubject<StockOverview[]> = new BehaviorSubject<StockOverview[]>([]);
   account_overview: BehaviorSubject<AccountOverview[]> = new BehaviorSubject<AccountOverview[]>([]);
   net_worth_history: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,public router: Router) {
 
   }
 
@@ -40,17 +41,35 @@ export class DatabaseService {
     ACCOUNTS = ACCOUNTS.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;;
     INVESTMENTS = INVESTMENTS.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;;
 
-    this.get_stock_overview(uid, userToken, this.get_viewing_currency()!);
-    this.get_accounts_overview(uid, userToken, this.get_viewing_currency()!);
-    this.get_all_accounts(uid, userToken);
-    this.get_all_expenses(uid, userToken, this.get_viewing_currency()!);
-    this.get_net_worth_history(uid, userToken, this.get_viewing_currency()!);
-    this.get_settings(uid, userToken);
+
+    this.get_settings(uid, userToken).subscribe(
+      (data) => {
+        this.settings.next(data);
+        console.log(data);
+        if(data.onboarded){
+          this.get_stock_overview(uid, userToken, this.get_viewing_currency()!);
+          this.get_accounts_overview(uid, userToken, this.get_viewing_currency()!);
+          this.get_all_accounts(uid, userToken);
+          this.get_all_expenses(uid, userToken, this.get_viewing_currency()!);
+          this.get_net_worth_history(uid, userToken, this.get_viewing_currency()!);
+        }else{
+          console.log("User not onboarded")
+          this.router.navigate(['/onboarding']);
+        }
+      }
+    );
   }
 
 
 
-
+  initialize_user(uid:string,user_token:string){
+    var url = BACKEND_URL + 'initialize/' + uid + '/' + user_token;
+    this.http.get(url).subscribe(
+      (response) => {
+        console.log(response);
+      }
+    )
+  }
 
 
   addExpense(expense: Expense, uid:string, user_token:string): void {
@@ -189,9 +208,22 @@ export class DatabaseService {
 
   get_settings(uid: string, user_token: string) {
     var url = BACKEND_URL + 'get-settings/' + uid + '/' + user_token;
-    this.http.get<Settings>(url).subscribe(
+    return this.http.get<Settings>(url)
+  }
+
+  mark_onboarded(uid: string, user_token: string) {
+    var url = BACKEND_URL + 'mark-onboarded/' + uid + '/' + user_token;
+    this.http.get<boolean>(url).subscribe(
       (data) => {
-        this.settings.next(data);
+        if(data){
+          alert("You've been onboarded");
+          this.router.navigate(['/dashboard']).then(
+            (_) => {
+              window.location.reload();
+            }
+          );
+          
+        }
       }
     )
   }

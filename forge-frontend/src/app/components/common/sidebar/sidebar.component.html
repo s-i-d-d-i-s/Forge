@@ -1,6 +1,6 @@
-<button class="toggle-button-out" (click)="toggleSidebar()"><img class="menubt" src="assets\assets\img\icons\others\menu.png" alt=""></button>
+<button class="toggle-button-out" (click)="toggleSidebar()"><img class="menubt" src="assets\assets\img\icons\others\menu.png" alt=""  *ngIf="!disable_sidebar()"></button>
 
-<div [ngClass]="{'sidebar': is_mobile, 'hide': !is_sidebar_visible}">
+<div [ngClass]="{'sidebar': is_mobile, 'hide': !is_sidebar_visible}" *ngIf="!disable_sidebar()">
 
   <aside id="layout-menu" class="menu-vertical menu bg-menu-theme" style="overflow:auto; position: fixed;">
     <button class="toggle-button-in" *ngIf="is_mobile" (click)="toggleSidebar()"><img class="leftarrow" src="\assets\assets\img\icons\others\arrow.png" alt=""></button>

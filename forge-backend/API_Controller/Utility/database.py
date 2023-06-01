@@ -109,3 +109,40 @@ class DB:
 		delete_url = self.db + f'users/{uid}/expenses/{last_key}.json?auth={user_token}&uid={uid}'
 		print(requests.delete(delete_url))
 		
+
+
+
+	def get_settings(self,uid,user_token):
+		url = self.db + f'users/{uid}/settings.json?auth={user_token}&uid={uid}'
+		data = json.loads(requests.get(url).content)
+		return data
+	
+	def mark_onboarded(self,uid,user_token):
+		url = self.db + f'users/{uid}/settings.json?auth={user_token}&uid={uid}'
+		data = {	
+			'onboarded': True
+		}
+		response = requests.put(url,json.dumps(data))
+		if response.status_code != 200:
+			return False
+		return True
+	
+	def initialize_user_account(self,uid,user_token):
+		url = self.db + f'users/{uid}.json?auth={user_token}&uid={uid}'
+		old_data = json.loads(requests.get(url).content)
+		if old_data == None:
+			data = {
+				'accounts' : [],
+				'expenses' : [],
+				'investment': [],
+				'settings': {
+					'EUR_to_INR' : 88,
+					'USD_to_EUR' : 1,
+					'monthly_cap': 1600,
+					'onboarded': False
+				}
+			}
+			response = requests.put(url,json.dumps(data))
+			if response.status_code != 200:
+				return False
+		return True

@@ -13,8 +13,10 @@ class SettingService:
 
 		@app.route('/get-settings/<uid>/<auth_token>')
 		def get_settings(uid, auth_token):
+			response = self.db.get_settings(uid,auth_token)
 			data = {
 				'EUR_to_INR': self.db.convert_money(1,'EUR','INR'),
-				'USD_to_EUR': self.db.convert_money(1,'USD','EUR')
+				'USD_to_EUR': self.db.convert_money(1,'USD','EUR'),
+				'onboarded': response['onboarded']
             }
 			return json.dumps(data)
