@@ -14,7 +14,7 @@
                                         <input id="name" class="form-control" type="text"
                                             placeholder="Enter account name" [(ngModel)]="account.name">
                                     </div>
-                                    <button (click)="addAccount()" class="btn btn-primary">Submit</button>
+                                   
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -25,6 +25,9 @@
                                                 {{currency}}</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button (click)="addAccount()" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>

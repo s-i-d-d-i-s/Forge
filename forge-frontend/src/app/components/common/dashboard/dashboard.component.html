@@ -4,7 +4,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 p-2">
                     <div class="card">
                         <h5 class="card-header">Accounts (EUR)</h5>
                         <div class="table-responsive text-nowrap">
@@ -23,9 +23,8 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <br>
-                    <div class="card">
+                    </div> 
+                    <div class="card mt-3">
                         <h5 class="card-header">Accounts (INR)</h5>
                         <div class="table-responsive text-nowrap">
                             <table class="table">
@@ -45,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4  p-2">
                     <div class="card">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <h5 class="card-title m-0 me-2">Investments</h5>
@@ -75,7 +74,6 @@
                             </ul>
                         </div>
                     </div>
-                    <br>
                     <div class="card" *ngIf="assets.length != 0">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <h5 class="card-title m-0 me-2">Assets</h5>
@@ -98,12 +96,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 p-2">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <img src="assets/assets/img/icons/unicons/chart-success.png" alt="chart success"
+                                    <img src="assets/assets/img/icons/unicons/cc-primary.png" alt="chart success"
                                         class="rounded">
                                 </div>
                             </div>
@@ -112,12 +110,11 @@
                                 {{format_amount(get_total_money_in_banks())}}</h3>
                         </div>
                     </div>
-                    <br>
-                    <div class="card">
+                    <div class="card mt-3">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <img src="assets/assets/img/icons/unicons/wallet-info.png" alt="Credit Card"
+                                    <img src="assets/assets/img/icons/unicons/chart.png" alt="Credit Card"
                                         class="rounded">
                                 </div>
                             </div>
@@ -126,8 +123,7 @@
                                 {{format_amount(get_total_money_in_investments())}}</h3>
                         </div>
                     </div>
-                    <br>
-                    <div class="card">
+                    <div class="card mt-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between flex-sm-row flex-column gap-3"
                                 style="position: relative;">

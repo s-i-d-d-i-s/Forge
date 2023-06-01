@@ -7,8 +7,9 @@
                         <div *ngFor="let y of selected_stocks | keyvalue" class="m-3">
                             <h3>{{y.key}}</h3>
                             <br>
-                            <table class="table align-middle mb-0 bg-white">
+                            <div class="table-responsive">
 
+                            <table class="table table-striped align-middle">
                                 <thead class="bg-light">
                                     <tr>
                                         <th>S. No</th>
@@ -27,6 +28,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
                             <br>
                         </div>
                     </div>

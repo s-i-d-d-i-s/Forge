@@ -28,8 +28,7 @@
                                     <div class="mb-3">
                                         <label for="amount" class="form-label">Amount</label>
                                         <div class="input-group input-group-merge">
-                                            <span
-                                                class="input-group-text">{{viewing_currency=='EUR'?'€':'₹'}}</span>
+                                            <span class="input-group-text">{{viewing_currency=='EUR'?'€':'₹'}}</span>
                                             <input type="number" id="amount" class="form-control" placeholder="0"
                                                 aria-label="Amount" [(ngModel)]="expense.amount">
                                         </div>
@@ -42,7 +41,6 @@
                                                 {{amount_type}}</option>
                                         </select>
                                     </div>
-                                    <button (click)="addExpense()" class="btn btn-primary">Submit</button>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -53,7 +51,8 @@
 
                                     <div class="mb-3">
                                         <label for="current_date" class="form-label">Date</label>
-                                        <input class="form-control" type="date" [(ngModel)]="expense.timestamp" name="current_date" id="current_date">
+                                        <input class="form-control" type="date" [(ngModel)]="expense.timestamp"
+                                            name="current_date" id="current_date">
 
                                     </div>
 
@@ -61,12 +60,17 @@
                                         <label for="current_currencyType" class="form-label">Expense Type</label>
                                         <select class="form-select" id="current_currencyType" aria-label="Currency Type"
                                             [(ngModel)]="expense.currency" ngDefaultControl>
-                                            <option *ngFor="let currency_type of currencyTypes" [ngValue]="currency_type">
+                                            <option *ngFor="let currency_type of currencyTypes"
+                                                [ngValue]="currency_type">
                                                 {{currency_type}}</option>
                                         </select>
                                     </div>
-                                    
+
                                 </div>
+                                <div class="col-md-12 text-center">
+                                    <button (click)="addExpense()" class="btn btn-primary">Submit</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>

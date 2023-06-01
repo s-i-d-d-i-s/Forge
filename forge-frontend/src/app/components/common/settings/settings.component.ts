@@ -33,13 +33,6 @@ export class SettingsComponent implements OnInit {
     )
   }
 
-  updateSettings(){
-    this.db.addSettings(this.currentSettings);
-  }
-  
-  update_exchange_rate(){
-    this.db.addSettings(this.currentSettings);
-  }
 
   update_viewing_currency(){
       this.db.set_viewing_currency(this.current_viewing_currency)

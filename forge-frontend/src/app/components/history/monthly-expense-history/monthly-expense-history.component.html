@@ -16,7 +16,6 @@
                                                 {{month}}</option>
                                         </select>
                                     </div>
-                                    <button (click)="showReport()" class="btn btn-primary">Submit</button>
                                 </div>
                                 <div class="col-md-6">
 
@@ -29,6 +28,9 @@
                                         </select>
                                     </div>
 
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button (click)="showReport()" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -56,32 +58,35 @@
                 </div>
             </div>
         </div> -->
-        <div class="container" class="text-center">
+        <div class="container" class="text-center" *ngIf="selectedExpenses.length != 0">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card mb-4">
-                        <table class="table align-middle mb-0 bg-white">
-                            <thead class="bg-light">
-                                <tr>
-                                    <th>S. No</th>
-                                    <th>Name</th>
-                                    <th>Amount</th>
-                                    <th>Account</th>
-                                    <th>Type</th>
-                                    <th>Timestamp</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let x of selectedExpenses.reverse(); let i = index">
-                                    <td>{{i+1}}</td>
-                                    <td>{{x.name}}</td>
-                                    <td>{{formatAmount(x.amount)}}</td>
-                                    <td>{{x.account}}</td>
-                                    <td>{{x.amountType}}</td>
-                                    <td>{{getDate(x.timestamp)}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+
+                            <table class="table table-striped align-middle">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>S. No</th>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Account</th>
+                                        <th>Type</th>
+                                        <th>Timestamp</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let x of selectedExpenses.reverse(); let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{x.name}}</td>
+                                        <td>{{formatAmount(x.amount)}}</td>
+                                        <td>{{x.account}}</td>
+                                        <td>{{x.amountType}}</td>
+                                        <td>{{getDate(x.timestamp)}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <br>
                     </div>
                 </div>

@@ -111,7 +111,6 @@ export class DatabaseService {
     var url = BACKEND_URL + 'get-net-worth-history/' + uid + '/' + user_token + '/' + viewingCurrency;
     this.http.get<any[]>(url).subscribe(
       (data) => {
-        console.log(data);
         this.net_worth_history.next(data);
       }
     )

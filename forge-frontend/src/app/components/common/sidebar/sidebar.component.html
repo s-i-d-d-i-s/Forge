@@ -2,7 +2,7 @@
 
 <div [ngClass]="{'sidebar': is_mobile, 'hide': !is_sidebar_visible}">
 
-  <aside id="layout-menu" class="menu-vertical menu bg-menu-theme" style="overflow:auto">
+  <aside id="layout-menu" class="menu-vertical menu bg-menu-theme" style="overflow:auto; position: fixed;">
     <button class="toggle-button-in" *ngIf="is_mobile" (click)="toggleSidebar()"><img class="leftarrow" src="\assets\assets\img\icons\others\arrow.png" alt=""></button>
     <div class="app-brand demo">
       <a routerLink="/" class="app-brand-link">
