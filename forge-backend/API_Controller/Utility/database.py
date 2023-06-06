@@ -6,14 +6,18 @@ import time
 class DB:
 	def __init__(self):
 		self.db = os.getenv('forge_db_url')
-
+		self.forex_key = os.getenv('forex_key')
 	
 	def convert_money(self,amount,currency_1,currency_2):
+		url = f'http://api.exchangeratesapi.io/v1/latest?access_key={self.forex_key}&base=USD&symbols=EUR,INR'
+		data = json.loads(requests.get(url).content)['rates']
+
 		if currency_1 == currency_2:
 			return amount
+		
 		forex_to_USD = {
-			'EUR' : 1,
-			'INR' : 88
+			'EUR' : float(data['EUR']),
+			'INR' : float['INR']
 		}
 		if currency_1 != 'USD':
 			amount /= forex_to_USD[currency_1]
