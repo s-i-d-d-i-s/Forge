@@ -9,15 +9,15 @@ class DB:
 		self.forex_key = os.getenv('forex_key')
 	
 	def convert_money(self,amount,currency_1,currency_2):
-		url = f'http://api.exchangeratesapi.io/v1/latest?access_key={self.forex_key}&base=USD&symbols=EUR,INR'
-		data = json.loads(requests.get(url).content)['rates']
+		#url = f'http://api.exchangeratesapi.io/v1/latest?access_key={self.forex_key}&base=USD&symbols=EUR,INR'
+		#data = json.loads(requests.get(url).content)['rates']
 
 		if currency_1 == currency_2:
 			return amount
 		
 		forex_to_USD = {
-			'EUR' : float(data['EUR']),
-			'INR' : float['INR']
+			'EUR' : 0.93,
+			'INR' : 82.5
 		}
 		if currency_1 != 'USD':
 			amount /= forex_to_USD[currency_1]
