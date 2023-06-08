@@ -1,17 +1,13 @@
 import os
 import requests
 import json
-import time
 
 class DB:
 	def __init__(self):
 		self.db = os.getenv('forge_db_url')
-		self.forex_key = os.getenv('forex_key')
-	
-	def convert_money(self,amount,currency_1,currency_2):
-		#url = f'http://api.exchangeratesapi.io/v1/latest?access_key={self.forex_key}&base=USD&symbols=EUR,INR'
-		#data = json.loads(requests.get(url).content)['rates']
 
+	def convert_money(self,amount,currency_1,currency_2):
+		
 		if currency_1 == currency_2:
 			return amount
 		
