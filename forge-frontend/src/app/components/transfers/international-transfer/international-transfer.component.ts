@@ -28,7 +28,8 @@ export class InternationalTransferComponent implements OnInit {
     this.accounts = [];
     this.currency_types = [
       'INR',
-      'EUR'
+      'EUR',
+      'USD'
     ]
     this.amount_types = [
       'Credit',

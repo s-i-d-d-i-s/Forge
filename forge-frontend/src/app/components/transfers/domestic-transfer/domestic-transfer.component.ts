@@ -29,7 +29,8 @@ export class DomesticTransferComponent implements OnInit {
 
     this.currency_types = [
       'INR',
-      'EUR'
+      'EUR',
+      'USD'
     ]
     this.expense_1.currency = this.currency_types[0];
     this.expense_1.timestamp = new Date(Date.now());
