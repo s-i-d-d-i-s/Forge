@@ -18,6 +18,7 @@ export class SettingsComponent implements OnInit {
     this.currentSettings = new Settings();
     this.currencies = [
       'INR',
+      'USD',
       'EUR'
     ];
     this.current_viewing_currency = this.db.get_viewing_currency()!;

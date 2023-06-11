@@ -11,16 +11,16 @@ class DB:
 		if currency_1 == currency_2:
 			return amount
 		
-		forex_to_USD = {
+		USD_to_FX = {
 			'EUR' : 0.93,
 			'INR' : 82.5
 		}
 		if currency_1 != 'USD':
-			amount /= forex_to_USD[currency_1]
+			amount /= USD_to_FX[currency_1]
 
 		
 		if currency_2 != 'USD':
-			amount *= forex_to_USD[currency_2]
+			amount *= USD_to_FX[currency_2]
 		
 		return amount
 		

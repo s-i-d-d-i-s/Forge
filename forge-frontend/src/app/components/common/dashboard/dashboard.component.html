@@ -43,6 +43,25 @@
                             </table>
                         </div>
                     </div>
+                    <div class="card mt-3">
+                        <h5 class="card-header">Accounts (USD)</h5>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Account Name</th>
+                                        <th>Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+                                    <tr *ngFor="let x of account_overview; let i = index">
+                                        <td *ngIf="x.currency == 'USD'"><a routerLink="/account/{{x.name}}"><strong>{{x.name}}</strong></a></td>
+                                        <td *ngIf="x.currency == 'USD'">{{get_viewing_currency()=='EUR'?'€':'₹'}} {{format_amount(x.amount)}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4  p-2">
                     <div class="card">

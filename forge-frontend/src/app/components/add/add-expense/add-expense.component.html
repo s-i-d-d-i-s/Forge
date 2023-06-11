@@ -25,6 +25,14 @@
                                                 {{account.name}}</option>
                                         </select>
                                     </div>
+                                    <div class="mb-3" *ngIf="expense.currency == 'USD'">
+                                        <label for="current_account" class="form-label">Account Name</label>
+                                        <select class="form-select" id="current_account" aria-label="Account Name"
+                                            [(ngModel)]="expense.account" ngDefaultControl>
+                                            <option *ngFor="let account of usd_accounts" [ngValue]="account.name">
+                                                {{account.name}}</option>
+                                        </select>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="amount" class="form-label">Amount</label>
                                         <div class="input-group input-group-merge">

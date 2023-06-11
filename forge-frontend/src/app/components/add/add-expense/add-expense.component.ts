@@ -18,13 +18,15 @@ export class AddExpenseComponent implements OnInit {
   settings: Settings = new Settings();
   eur_accounts: Account[];
   inr_accounts: Account[];
+  usd_accounts: Account[];
   amountTypes: string[];
   currencyTypes: string[];
 
   constructor(private db: DatabaseService,public auth:AuthenticationService) {
     this.eur_accounts = [];
     this.inr_accounts = [];
-    
+    this.usd_accounts = [];
+
     this.amountTypes = [
       'Credit',
       'Debit'
@@ -32,7 +34,8 @@ export class AddExpenseComponent implements OnInit {
     
     this.currencyTypes = [
       'INR',
-      'EUR'
+      'EUR',
+      'USD'
     ]
     this.expense.timestamp = new Date(Date.now());
     this.expense.amountType = this.amountTypes[1];
@@ -45,13 +48,17 @@ export class AddExpenseComponent implements OnInit {
       (data) => {
         if (data.length > 0)
           this.expense.account = data[0].name;
+        console.log(data);
         for (let account of data) {
           if (account.closed == false && account.currency == "INR") {
             this.inr_accounts.push(account);
           } else if (account.closed == false && account.currency == "EUR") {
             this.eur_accounts.push(account);
+          } else if (account.closed == false && account.currency == "USD") {
+            this.usd_accounts.push(account);
           }
         }
+        console.log(this.usd_accounts);
       }
     )
     this.db.settings.subscribe(

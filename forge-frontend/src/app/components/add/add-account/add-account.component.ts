@@ -14,7 +14,8 @@ export class AddAccountComponent implements OnInit {
 
   currency_types = [
     'INR',
-    'EUR'
+    'EUR',
+    'USD'
   ]
   ngOnInit(): void {
     this.account.closed=false;
