@@ -89,4 +89,12 @@ export class AddExpenseComponent implements OnInit {
     }
     return localStorage.getItem("View_Currency");
   }
+  get_viewing_currency_symbol(){
+    if(this.expense.currency == 'INR'){
+      return '₹'
+    }else if(this.expense.currency == 'EUR'){
+      return '€';
+    }
+    return '$';
+  }
 }

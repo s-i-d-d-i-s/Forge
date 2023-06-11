@@ -36,7 +36,7 @@
                                     <div class="mb-3">
                                         <label for="amount" class="form-label">Amount</label>
                                         <div class="input-group input-group-merge">
-                                            <span class="input-group-text">{{viewing_currency=='EUR'?'€':'₹'}}</span>
+                                            <span class="input-group-text">{{get_viewing_currency_symbol()}}</span>
                                             <input type="number" id="amount" class="form-control" placeholder="0"
                                                 aria-label="Amount" [(ngModel)]="expense.amount">
                                         </div>

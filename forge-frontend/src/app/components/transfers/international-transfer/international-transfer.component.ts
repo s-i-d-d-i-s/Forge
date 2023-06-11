@@ -87,4 +87,13 @@ export class InternationalTransferComponent implements OnInit {
     )
   }
 
+  get_viewing_currency_symbol(expense:Expense){
+    if(expense.currency == 'INR'){
+      return '₹'
+    }else if(expense.currency == 'EUR'){
+      return '€';
+    }
+    return '$';
+  }
+
 }

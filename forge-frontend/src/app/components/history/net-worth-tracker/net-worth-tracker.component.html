@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card mb-4">
-                        <h4 class="card-header text-center">Your Net Worth :   {{getViewingCurrency()=='EUR'?'€':'₹'}} {{ formatAmountCurrency(y_data[y_data.length-1] )}}</h4>
+                        <h4 class="card-header text-center">Your Net Worth :   {{get_viewing_currency_symbol()}} {{ formatAmountCurrency(y_data[y_data.length-1] )}}</h4>
                         <!--The content below is only a placeholder and can be replaced.-->
                         <div id="chart" *ngIf="chartOptions != undefined">
                             <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"

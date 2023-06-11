@@ -86,4 +86,13 @@ export class DashboardComponent implements OnInit {
     }
     return localStorage.getItem("View_Currency");
   }
+
+  get_viewing_currency_symbol(){
+    if(this.get_viewing_currency() == 'INR'){
+      return '₹'
+    }else if(this.get_viewing_currency() == 'EUR'){
+      return '€';
+    }
+    return '$';
+  }
 }

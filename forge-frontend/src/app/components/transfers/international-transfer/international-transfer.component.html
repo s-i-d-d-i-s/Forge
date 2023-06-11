@@ -20,7 +20,7 @@
                                     <div class="mb-3">
                                         <label for="amount" class="form-label">Amount Sent</label>
                                         <div class="input-group input-group-merge">
-                                            <span class="input-group-text">{{expense_1.currency =='EUR'?'€':'₹'}}</span>
+                                            <span class="input-group-text">{{get_viewing_currency_symbol(expense_1)}}</span>
                                             <input type="number" id="amount" class="form-control" placeholder="0"
                                                 aria-label="Amount" [(ngModel)]="expense_1.amount">
                                         </div>
@@ -54,7 +54,7 @@
                                     <div class="mb-3">
                                         <label for="amount" class="form-label">Amount Received</label>
                                         <div class="input-group input-group-merge">
-                                            <span class="input-group-text">{{expense_2.currency =='EUR'?'€':'₹'}}</span>
+                                            <span class="input-group-text">{{get_viewing_currency_symbol(expense_2)}}</span>
                                             <input type="number" id="amount" class="form-control" placeholder="0"
                                                 aria-label="Amount" [(ngModel)]="expense_2.amount">
                                         </div>

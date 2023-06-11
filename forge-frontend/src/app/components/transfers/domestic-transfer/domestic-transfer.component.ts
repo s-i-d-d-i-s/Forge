@@ -83,5 +83,13 @@ export class DomesticTransferComponent implements OnInit {
         }, 2000);
       });
   }
-
+  
+  get_viewing_currency_symbol(){
+    if(this.expense_1.currency == 'INR'){
+      return '₹'
+    }else if(this.expense_1.currency == 'EUR'){
+      return '€';
+    }
+    return '$';
+  }
 }

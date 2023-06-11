@@ -98,15 +98,24 @@ export class NetWorthTrackerComponent implements OnInit {
   formatAmountCurrency(amount: number) {
     var formatter = new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: this.getViewingCurrency()!,
+      currency: this.get_viewing_currency()!,
     });
 
     return formatter.format(+amount.toFixed(2)).substring(1);
   }
-  getViewingCurrency() {
+  get_viewing_currency() {
     if (localStorage.getItem("View_Currency") == null) {
       return "INR";
     }
     return localStorage.getItem("View_Currency");
+  }
+
+  get_viewing_currency_symbol(){
+    if(this.get_viewing_currency() == 'INR'){
+      return '₹'
+    }else if(this.get_viewing_currency() == 'EUR'){
+      return '€';
+    }
+    return '$';
   }
 }
