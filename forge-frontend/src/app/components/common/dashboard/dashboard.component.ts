@@ -42,6 +42,11 @@ export class DashboardComponent implements OnInit {
         this.account_overview = data;
       }
     )
+    this.db.assets.subscribe(
+      (data) => {
+        this.assets = data;
+      }
+    )
   }
 
 
@@ -61,8 +66,18 @@ export class DashboardComponent implements OnInit {
     return currentBalance;
   }
 
+  get_total_money_in_assets(){
+    var currentBalance = 0;
+    for(let i=0;i<this.assets.length;i++){
+      currentBalance += (+this.assets[i]['price']);
+    }
+    return currentBalance;
+  }
+
   get_total_net_worth(){
-    var result = this.get_total_money_in_banks() + this.get_total_money_in_investments();
+    console.log(this.get_total_money_in_assets());
+    var result = this.get_total_money_in_banks() + this.get_total_money_in_investments() + this.get_total_money_in_assets();
+    console.log(result);
     result = Math.round(result* 100) / 100;
     return result;
   }

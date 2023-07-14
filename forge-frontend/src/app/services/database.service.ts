@@ -9,12 +9,14 @@ import { StockOverview } from '../models/StockOverview';
 import { AuthenticationService } from './authentication.service';
 import { AccountOverview } from '../models/AccountOverview';
 import { Router } from '@angular/router';
+import { Asset } from '../models/Asset.model';
 
 const DATABASE_BASE = 'https://deoxys-prod-default-rtdb.firebaseio.com/'
 var EXPENSES = DATABASE_BASE + 'users/<<uid>>/expenses.json';
 var ACCOUNTS = DATABASE_BASE + 'users/<<uid>>/accounts.json';
 var SETTINGS = DATABASE_BASE + 'users/<<uid>>/settings.json';
 var INVESTMENTS = DATABASE_BASE + 'users/<<uid>>/investment.json';
+var ASSETS = DATABASE_BASE + 'users/<<uid>>/assets.json';
 
 export const BACKEND_URL = 'https://forge-wjr4nnbhza-uc.a.run.app/';
 
@@ -30,16 +32,17 @@ export class DatabaseService {
   stock_overview: BehaviorSubject<StockOverview[]> = new BehaviorSubject<StockOverview[]>([]);
   account_overview: BehaviorSubject<AccountOverview[]> = new BehaviorSubject<AccountOverview[]>([]);
   net_worth_history: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  assets: BehaviorSubject<Asset[]> = new BehaviorSubject<Asset[]>([]);
   constructor(private http: HttpClient,public router: Router) {
 
   }
 
   refreshData(userToken: string, uid: string) {
     SETTINGS = SETTINGS.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;
-    EXPENSES = EXPENSES.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;;
-    ACCOUNTS = ACCOUNTS.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;;
-    INVESTMENTS = INVESTMENTS.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;;
-
+    EXPENSES = EXPENSES.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;
+    ACCOUNTS = ACCOUNTS.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;
+    INVESTMENTS = INVESTMENTS.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;
+    ASSETS = ASSETS.replace("<<uid>>", uid) + '?auth=' + userToken + '&uid=' + uid;
 
     this.get_settings(uid, userToken).subscribe(
       (data) => {
@@ -51,6 +54,7 @@ export class DatabaseService {
           this.get_all_accounts(uid, userToken);
           this.get_all_expenses(uid, userToken, this.get_viewing_currency()!);
           this.get_net_worth_history(uid, userToken, this.get_viewing_currency()!);
+          this.get_all_assets(uid, userToken, this.get_viewing_currency()!);
         }else{
           console.log("User not onboarded")
           this.router.navigate(['/onboarding']);
@@ -83,6 +87,15 @@ export class DatabaseService {
 
   addAccount(account: Account): void {
     this.http.post(ACCOUNTS, account).subscribe(
+      (data) => {
+        console.log("POSTED SUCCESSFULLY !");
+        // TODO : this.getAllAccounts();
+      }
+    )
+  }
+
+  addAsset(asset: Asset): void {
+    this.http.post(ASSETS, asset).subscribe(
       (data) => {
         console.log("POSTED SUCCESSFULLY !");
         // TODO : this.getAllAccounts();
@@ -149,6 +162,20 @@ export class DatabaseService {
     this.http.get<Account[]>(url).subscribe(
       (data) => {
         this.accounts.next(data);
+      }
+    )
+  }
+
+  get_all_assets(uid: string, user_token: string, viewingCurrency:string): void {
+    var url = ASSETS;
+    this.http.get< { [key: string]: Asset }>(url).subscribe(
+      (data) => {
+        var response:Asset[]=[];
+        for(let [key, value] of Object.entries(data)){
+          response.push(value);
+        }
+        this.assets.next(response);
+        console.log(response);
       }
     )
   }
