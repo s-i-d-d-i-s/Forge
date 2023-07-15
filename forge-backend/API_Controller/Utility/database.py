@@ -61,6 +61,15 @@ class DB:
 		for d in data:
 			expenses.append(data[d])
 		return expenses
+
+	def get_assets(self,uid,user_token):
+		url = self.db + 'users/<<uid>>/assets.json'.replace('<<uid>>', uid)
+		url = url + '?auth=' + user_token + '&uid=' + uid
+		data = json.loads(requests.get(url).content)
+		assets = []
+		for d in data:
+			assets.append(data[d])
+		return assets
 	
 	def get_accounts(self,uid,user_token):
 		url = self.db + 'users/<<uid>>/accounts.json'.replace('<<uid>>', uid)
