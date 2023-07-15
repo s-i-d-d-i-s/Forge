@@ -167,15 +167,10 @@ export class DatabaseService {
   }
 
   get_all_assets(uid: string, user_token: string, viewingCurrency:string): void {
-    var url = ASSETS;
-    this.http.get< { [key: string]: Asset }>(url).subscribe(
+    var url = BACKEND_URL + 'add-assets/' + uid +'/'+ user_token + '/' + viewingCurrency;
+    this.http.get<Asset[]>(url).subscribe(
       (data) => {
-        var response:Asset[]=[];
-        for(let [key, value] of Object.entries(data)){
-          response.push(value);
-        }
-        this.assets.next(response);
-        console.log(response);
+        this.assets.next(data);
       }
     )
   }
