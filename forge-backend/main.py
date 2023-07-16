@@ -4,6 +4,7 @@ from API_Controller.Users import UserService
 from API_Controller.Stocks import StockService
 from API_Controller.Expense import ExpenseService
 from API_Controller.Settings import SettingService
+from API_Controller.Settings import AssetService
 import os
 
 app = Flask(__name__)
@@ -13,7 +14,7 @@ StockService(app)
 ExpenseService(app)
 SettingService(app)
 UserService(app)
-
+AssetService(app)
 
 port = os.getenv('PORT')
 if port == None:
