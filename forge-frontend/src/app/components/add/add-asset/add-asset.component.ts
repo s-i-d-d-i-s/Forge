@@ -25,6 +25,7 @@ export class AddAssetComponent implements OnInit {
 
   addAsset(){
     this.db.addAsset(this.asset);
+    this.show_alert = true;
     this.ngOnInit();
     setTimeout(() => {
       this.show_alert = false;
