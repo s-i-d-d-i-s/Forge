@@ -167,7 +167,7 @@ export class DatabaseService {
   }
 
   get_all_assets(uid: string, user_token: string, viewingCurrency:string): void {
-    var url = BACKEND_URL + 'add-assets/' + uid +'/'+ user_token + '/' + viewingCurrency;
+    var url = BACKEND_URL + 'get-assets/' + uid +'/'+ user_token + '/' + viewingCurrency;
     this.http.get<Asset[]>(url).subscribe(
       (data) => {
         this.assets.next(data);

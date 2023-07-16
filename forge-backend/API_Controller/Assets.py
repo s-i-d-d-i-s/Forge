@@ -16,6 +16,6 @@ class AssetService:
 			assets = self.db.get_assets(uid,auth_token)
 			response = []
 			for asset in assets:	
-				asset['price'] = self.db.convert_money(asset['price'], asset['currency'], currency)
+				asset['price'] = round(self.db.convert_money(float(asset['price']), asset['currency'], currency),2)
 				response.append(asset)
 			return json.dumps(response)

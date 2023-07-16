@@ -37,6 +37,7 @@ class ExpenseService:
 		def get_net_worth_history(uid, auth_token, currency):
 			expenses = self.db.get_expenses(uid,auth_token)
 			stocks = self.db.get_stocks(uid,auth_token)
+			assets = self.db.get_assets(uid,auth_token)
 			history = []
 			for expense in expenses:
 				history.append([expense['timestamp'], self.db.convert_money(expense['amount'],expense['currency'],currency), expense['amountType']])
@@ -44,6 +45,9 @@ class ExpenseService:
 			for stock in stocks:
 				history.append([stock['timestamp'], float(stock['amount'])*self.db.get_price(stock['name'],currency), "Credit"])
 
+			for asset in assets:
+				history.append([asset['timestamp'], self.db.convert_money(float(asset['price']), asset['currency'], currency), "Credit"])
+				
 			history = sorted(history,key=lambda x:parser.isoparse(x[0]).strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
 			response = []
 			total_net_worth = 0
@@ -54,7 +58,6 @@ class ExpenseService:
 				total_net_worth += amount
 				response.append([parser.isoparse(obj[0]).strftime('%d-%m-%Y'), round(total_net_worth,2)])
 
-			print(total_net_worth)
 			return json.dumps(response)
 		
 		@app.route('/undo-expense/<uid>/<auth_token>')
