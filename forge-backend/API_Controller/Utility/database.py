@@ -12,7 +12,7 @@ class DB:
 			return amount
 		
 		USD_to_FX = {
-			'EUR' : 0.90,
+			'EUR' : 0.912,
 			'INR' : 82.02
 		}
 		if currency_1 != 'USD':
