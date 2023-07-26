@@ -12,8 +12,8 @@ class DB:
 			return amount
 		
 		USD_to_FX = {
-			'EUR' : 0.93,
-			'INR' : 82.5
+			'EUR' : 0.90,
+			'INR' : 82.02
 		}
 		if currency_1 != 'USD':
 			amount /= USD_to_FX[currency_1]
