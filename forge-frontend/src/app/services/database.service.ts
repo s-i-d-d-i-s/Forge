@@ -18,7 +18,7 @@ var SETTINGS = DATABASE_BASE + 'users/<<uid>>/settings.json';
 var INVESTMENTS = DATABASE_BASE + 'users/<<uid>>/investment.json';
 var ASSETS = DATABASE_BASE + 'users/<<uid>>/assets.json';
 
-export const BACKEND_URL = 'http://localhost:5000/' //'https://forge-v2.n1ghtm4re.repl.co/';
+export const BACKEND_URL = 'https://forge-v2.n1ghtm4re.repl.co/';
 
 @Injectable({
   providedIn: 'root'
