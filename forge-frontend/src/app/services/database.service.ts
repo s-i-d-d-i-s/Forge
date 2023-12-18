@@ -18,7 +18,7 @@ var SETTINGS = DATABASE_BASE + 'users/<<uid>>/settings.json';
 var INVESTMENTS = DATABASE_BASE + 'users/<<uid>>/investment.json';
 var ASSETS = DATABASE_BASE + 'users/<<uid>>/assets.json';
 
-export const BACKEND_URL = 'https://forge-v2.n1ghtm4re.repl.co/';
+export const BACKEND_URL = 'http://localhost:5000/' //'https://forge-v2.n1ghtm4re.repl.co/';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,7 @@ export class DatabaseService {
   stock_overview: BehaviorSubject<StockOverview[]> = new BehaviorSubject<StockOverview[]>([]);
   account_overview: BehaviorSubject<AccountOverview[]> = new BehaviorSubject<AccountOverview[]>([]);
   net_worth_history: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  liquid_net_worth_history: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   assets: BehaviorSubject<Asset[]> = new BehaviorSubject<Asset[]>([]);
   constructor(private http: HttpClient,public router: Router) {
 
@@ -54,6 +55,7 @@ export class DatabaseService {
           this.get_all_accounts(uid, userToken);
           this.get_all_expenses(uid, userToken, this.get_viewing_currency()!);
           this.get_net_worth_history(uid, userToken, this.get_viewing_currency()!);
+          this.get_liquid_net_worth_history(uid, userToken, this.get_viewing_currency()!);
           this.get_all_assets(uid, userToken, this.get_viewing_currency()!);
         }else{
           console.log("User not onboarded")
@@ -143,6 +145,15 @@ export class DatabaseService {
     this.http.get<any[]>(url).subscribe(
       (data) => {
         this.net_worth_history.next(data);
+      }
+    )
+  }
+
+  get_liquid_net_worth_history(uid: string, user_token: string, viewingCurrency: string) {
+    var url = BACKEND_URL + 'get-liquid-net-worth-history/' + uid + '/' + user_token + '/' + viewingCurrency;
+    this.http.get<any[]>(url).subscribe(
+      (data) => {
+        this.liquid_net_worth_history.next(data);
       }
     )
   }

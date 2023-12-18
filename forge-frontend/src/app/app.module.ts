@@ -28,6 +28,7 @@ import { NetWorthTrackerComponent } from './components/history/net-worth-tracker
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { AuthGuard } from './services/auth.guard';
 import { OnboardingComponent } from './components/auth/onboarding/onboarding.component';
+import { LiquidNetWorthTrackerComponent } from './components/history/liquid-net-worth-tracker/liquid-net-worth-tracker.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { OnboardingComponent } from './components/auth/onboarding/onboarding.com
     InternationalTransferComponent,
     MonthlyExpenseHistoryComponent,
     NetWorthTrackerComponent,
-    OnboardingComponent
+    OnboardingComponent,
+    LiquidNetWorthTrackerComponent
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,10 @@ export class DashboardComponent implements OnInit {
   stock_overview: StockOverview[] = [];
   account_overview: AccountOverview[] = [];
 
+  has_USD = false;
+  has_EUR = false;
+  has_INR = false;
+
   constructor(public db:DatabaseService) {
     this.assets = [];
     this.currentSettings = new Settings();
@@ -40,6 +44,15 @@ export class DashboardComponent implements OnInit {
     this.db.account_overview.subscribe(
       (data) => {
         this.account_overview = data;
+        for(let x of this.account_overview){
+          if(x.currency == 'USD'){
+            this.has_USD = true;
+          }else if(x.currency == 'INR'){
+            this.has_INR = true;
+          }else if(x.currency == 'EUR'){
+            this.has_EUR = true;
+          }
+        }
       }
     )
     this.db.assets.subscribe(
@@ -74,10 +87,14 @@ export class DashboardComponent implements OnInit {
     return currentBalance;
   }
 
+  get_total_money_in_liquid_assets(){
+    var result = this.get_total_money_in_banks() + this.get_total_money_in_investments();
+    result = Math.round(result* 100) / 100;
+    return result;
+  }
+
   get_total_net_worth(){
-    console.log(this.get_total_money_in_assets());
     var result = this.get_total_money_in_banks() + this.get_total_money_in_investments() + this.get_total_money_in_assets();
-    console.log(result);
     result = Math.round(result* 100) / 100;
     return result;
   }

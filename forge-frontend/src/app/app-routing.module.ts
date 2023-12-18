@@ -18,6 +18,7 @@ import { NetWorthTrackerComponent } from './components/history/net-worth-tracker
 import { OverviewComponent } from './components/common/overview/overview.component';
 import { AuthGuard } from './services/auth.guard';
 import { OnboardingComponent } from './components/auth/onboarding/onboarding.component';
+import { LiquidNetWorthTrackerComponent } from './components/history/liquid-net-worth-tracker/liquid-net-worth-tracker.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path : 'onboarding' , component : OnboardingComponent},
   {path : 'monthly-tracker', component: MonthlyExpenseHistoryComponent,canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin} },
   {path : 'net-worth-tracker', component: NetWorthTrackerComponent,canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin} },
+  {path : 'liquid-net-worth-tracker', component: LiquidNetWorthTrackerComponent,canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin} },
 ];
 
 

@@ -150,6 +150,13 @@
           <div data-i18n="Analytics">Net Worth</div>
         </a>
       </li>
+
+      <li class="menu-item" [class.active]="tab==12"  *ngIf="auth.isLoggedIn()">
+        <a routerLink="/liquid-net-worth-tracker" class="menu-link"  (click)="tab=12">
+          <i class="menu-icon tf-icons bx bx-chart"></i>
+          <div data-i18n="Analytics">Liquid Net Worth</div>
+        </a>
+      </li>
       
       <li class="menu-header small text-uppercase" *ngIf="auth.isLoggedIn()">
         <span class="menu-header-text">Actions</span>
