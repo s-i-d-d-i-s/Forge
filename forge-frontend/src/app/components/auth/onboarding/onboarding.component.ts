@@ -13,7 +13,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class OnboardingComponent implements OnInit {
 
   account: Account = {name:"",currency:"INR",closed:false};
-  stock : Stock = {name:'',amount:0, timestamp: new Date(Date.now())};
+  stock : Stock = {name:'', symbol:'', amount:0, timestamp: new Date(Date.now())};
 
   currency_types = [
     'INR',

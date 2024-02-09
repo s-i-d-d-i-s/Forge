@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Stock } from 'src/app/models/Stock.model';
+import { StockOverview } from 'src/app/models/StockOverview';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
@@ -27,12 +28,21 @@ export class StockHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.db.get_stock_history(this.uid,this.user_token, this.selected_stock, this.db.get_viewing_currency()!).subscribe(
-      (response) => {
-        this.selected_stocks = response;
+    this.db.stock_overview.subscribe(
+      (overview:StockOverview[]) => {
+          for(let stock of overview){
+            if(stock.name == this.selected_stock){
+              this.db.get_stock_history(this.uid,this.user_token, stock.symbol, this.db.get_viewing_currency()!).subscribe(
+                (response) => {
+                  this.selected_stocks = response;
+                }
+              );
+              break;
+            }
+          }
       }
-    );
+    )
+    
  
   }
  

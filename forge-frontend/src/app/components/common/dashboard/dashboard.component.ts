@@ -112,6 +112,12 @@ export class DashboardComponent implements OnInit {
     return formatter.format(+amount.toFixed(2)).substring(1);
   }
 
+  format_name(name:string){
+    if(name.length >= 30){
+      name = name.slice(0,30) + '...';
+    }
+    return name;
+  }
   get_viewing_currency() {
     if (localStorage.getItem("View_Currency") == null) {
       return "INR";

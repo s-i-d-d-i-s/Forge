@@ -73,14 +73,14 @@
                                 <li class="d-flex mb-4 pb-1" *ngFor="let x of stock_overview; let i = index">
                                     <div class="avatar flex-shrink-0 me-3">
                                         <a routerLink="/stock/{{x['name']}}">
-                                        <img src="assets/assets/img/icons/brands/google.png" alt="User"
+                                        <img [src]="x['logo']" alt="User"
                                             class="rounded" />
                                         </a>
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                         <div class="me-2">
-                                            <h6 class="mb-0">{{x['name']}}</h6>
+                                            <h6 class="mb-0">{{format_name(x['name'])}}</h6>
                                             <small class="text-muted d-block mb-1">{{format_amount(x['amount'])}}
                                                 Units</small>
                                         </div>
