@@ -115,20 +115,8 @@
                     </div>
                 </div>
                 <div class="col-md-4 p-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-title d-flex align-items-start justify-content-between">
-                                <div class="avatar flex-shrink-0">
-                                    <img src="assets/assets/img/icons/unicons/cc-primary.png" alt="chart success"
-                                        class="rounded">
-                                </div>
-                            </div>
-                            <span class="fw-semibold d-block mb-1">Bank</span>
-                            <h3 class="card-title mb-2">{{get_viewing_currency_symbol()}}
-                                {{format_amount(get_total_money_in_banks())}}</h3>
-                        </div>
-                    </div>
-                    <div class="card mt-3">
+                   
+                    <div class="card ">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
@@ -136,9 +124,9 @@
                                         class="rounded">
                                 </div>
                             </div>
-                            <span>Stocks</span>
+                            <span>Banks + GSU</span>
                             <h3 class="card-title text-nowrap mb-1">{{get_viewing_currency_symbol()}}
-                                {{format_amount(get_total_money_in_investments())}}</h3>
+                                {{format_amount(get_total_money_in_bank_and_gsu())}}</h3>
                         </div>
                     </div>
                     <div class="card mt-3">
@@ -149,7 +137,20 @@
                                         class="rounded">
                                 </div>
                             </div>
-                            <span>Assets</span>
+                            <span>Equity</span>
+                            <h3 class="card-title text-nowrap mb-1">{{get_viewing_currency_symbol()}}
+                                {{format_amount(get_total_money_in_equity())}}</h3>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="assets/assets/img/icons/unicons/chart.png" alt="Credit Card"
+                                        class="rounded">
+                                </div>
+                            </div>
+                            <span>Immovable Assets</span>
                             <h3 class="card-title text-nowrap mb-1">{{get_viewing_currency_symbol()}}
                                 {{format_amount(get_total_money_in_assets())}}</h3>
                         </div>

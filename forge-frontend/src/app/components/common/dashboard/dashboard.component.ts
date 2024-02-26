@@ -79,6 +79,15 @@ export class DashboardComponent implements OnInit {
     return currentBalance;
   }
 
+  get_total_money_in_GOOG(){
+    var currentBalance = 0;
+    for(let i=0;i<this.stock_overview.length;i++){
+      if(this.stock_overview[i]['name'] === 'GOOG')
+        currentBalance += this.stock_overview[i]['amount'] * this.stock_overview[i]['price'];
+    }
+    return currentBalance;
+  }
+
   get_total_money_in_assets(){
     var currentBalance = 0;
     for(let i=0;i<this.assets.length;i++){
@@ -89,6 +98,18 @@ export class DashboardComponent implements OnInit {
 
   get_total_money_in_liquid_assets(){
     var result = this.get_total_money_in_banks() + this.get_total_money_in_investments();
+    result = Math.round(result* 100) / 100;
+    return result;
+  }
+
+  get_total_money_in_bank_and_gsu(){
+    var result = this.get_total_money_in_banks()  + this.get_total_money_in_GOOG();
+    result = Math.round(result* 100) / 100;
+    return result;
+  }
+
+  get_total_money_in_equity(){
+    var result = this.get_total_money_in_investments() - this.get_total_money_in_GOOG();
     result = Math.round(result* 100) / 100;
     return result;
   }
